@@ -1,15 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { ModelViewer3D } from '@/app/components/content/ModelViewer3D';
-import { courses, Course, Section, Topic, Model3D } from '@/app/data/courses';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { ModelViewer3D } from '@/content/ModelViewer3D';
+import { courses, Course, Section, Topic, Model3D } from '@/data/courses';
 import {
   Box, ChevronRight, Search, ArrowRight,
 } from 'lucide-react';
 import clsx from 'clsx';
-import { colors, components, headingStyle, sectionColors, shapes } from '@/app/design-system';
-import { iconClasses, cardClasses, ctaButtonClasses } from '@/app/design-system';
+import { colors, components, headingStyle, sectionColors, shapes } from '@/design-system';
+import { iconClasses, cardClasses, ctaButtonClasses } from '@/design-system';
 
 // ── Types ──
 type ViewState = 'atlas' | 'section' | 'viewer';

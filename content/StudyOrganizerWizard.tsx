@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useApp, StudyPlan, StudyPlanTask } from '@/app/context/AppContext';
-import { courses } from '@/app/data/courses';
+import { useApp, StudyPlan, StudyPlanTask } from '@/context/AppContext';
+import { courses } from '@/data/courses';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   BookOpen, Video, Zap, GraduationCap, FileText, Box,
@@ -9,7 +9,7 @@ import {
   Microscope, Bug, Dna, Heart
 } from 'lucide-react';
 import clsx from 'clsx';
-import { headingStyle, components } from '@/app/design-system';
+import { headingStyle, components } from '@/design-system';
 
 // ──────────── Constants ────────────
 const TOTAL_STEPS = 6;

@@ -27,8 +27,8 @@
 // ============================================================
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode, useRef } from 'react';
-import { useAuth } from '@/app/context/AuthContext';
-import * as api from '@/app/services/platformApi';
+import { useAuth } from '@/context/AuthContext';
+import * as api from '@/services/platformApi';
 import type {
   Institution,
   InstitutionDashboardStats,
@@ -37,7 +37,7 @@ import type {
   InstitutionPlan,
   InstitutionSubscription,
   Course,
-} from '@/app/types/platform';
+} from '@/types/platform';
 
 // ── State shape ───────────────────────────────────────────
 

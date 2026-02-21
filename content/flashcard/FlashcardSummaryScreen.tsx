@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import clsx from 'clsx';
 import { Trophy, Sparkles, Activity } from 'lucide-react';
-import { SmartFlashcardGenerator } from '@/app/components/ai/SmartFlashcardGenerator';
-import { getTopicKeywords, getCourseKeywords } from '@/app/services/studentApi';
-import type { KeywordCollection } from '@/app/services/keywordManager';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
+import { SmartFlashcardGenerator } from '@/ai/SmartFlashcardGenerator';
+import { getTopicKeywords, getCourseKeywords } from '@/services/studentApi';
+import type { KeywordCollection } from '@/services/keywordManager';
+import { useStudentDataContext } from '@/context/StudentDataContext';
 
 export function SummaryScreen({ stats, onRestart, courseColor, courseId, courseName, topicId, topicTitle, onExit }: {
   stats: number[];

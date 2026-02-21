@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useApp } from '@/app/context/AppContext';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
-import { useAuth } from '@/app/context/AuthContext';
+import { useApp } from '@/context/AppContext';
+import { useStudentDataContext } from '@/context/StudentDataContext';
+import { useAuth } from '@/context/AuthContext';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Calendar, Bell, Settings, HelpCircle, LogOut, ChevronRight,
   BookOpen, Award, Flame, Clock, Trophy, CreditCard,
   MessageSquare, Shield, Moon, Zap, Target, TrendingUp, ChevronDown,
 } from 'lucide-react';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { headingStyle, components, colors } from '@/design-system';
 
 export function UserProfileDropdown() {
   const { setActiveView, theme, setTheme } = useApp();

@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Flashcard } from '@/app/data/courses';
+import { Flashcard } from '@/data/courses';
 import clsx from 'clsx';
 import { CheckCircle, Brain, X, Eye } from 'lucide-react';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
-import { RATINGS } from '@/app/hooks/flashcard-types';
+import { AxonLogo } from '@/shared/AxonLogo';
+import { RATINGS } from '@/hooks/flashcard-types';
 import { SpeedometerGauge } from './SpeedometerGauge';
 
 export function SessionScreen({ cards, currentIndex, isRevealed, setIsRevealed, handleRate, sessionStats, courseColor, onBack }: {

@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — ConfirmDialog (reusable confirmation dialog)
 //
-// IMPORT: import { ConfirmDialog } from '@/app/components/shared/ConfirmDialog';
+// IMPORT: import { ConfirmDialog } from '@/shared/ConfirmDialog';
 //
 // Usage:
 //   <ConfirmDialog
@@ -26,7 +26,7 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
   AlertDialogAction,
-} from '@/app/components/ui/alert-dialog';
+} from '@/ui/alert-dialog';
 import { Loader2 } from 'lucide-react';
 
 interface ConfirmDialogProps {

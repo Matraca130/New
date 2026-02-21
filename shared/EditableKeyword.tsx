@@ -15,13 +15,13 @@ import {
   Loader2,
 } from 'lucide-react';
 import clsx from 'clsx';
-import { useSmartPopupPosition } from '@/app/hooks/useSmartPopupPosition';
+import { useSmartPopupPosition } from '@/hooks/useSmartPopupPosition';
 import {
   KeywordData,
   MasteryLevel,
   masteryConfig,
-} from '@/app/data/keywords';
-import { AIQuestionItem } from '@/app/components/shared/AIQuestionItem';
+} from '@/data/keywords';
+import { AIQuestionItem } from '@/shared/AIQuestionItem';
 
 // ─── Editable Keyword (Pop-up de Palavra-chave) ─────────────────────────────
 //

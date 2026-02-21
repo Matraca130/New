@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Play, FileText, ArrowLeft, MoreVertical, PanelRightClose, PanelRight,
@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { SummarySession as SummarySessionWithAnnotations } from '@/app/components/content/SummarySessionNew';
-import { getLessonsForTopic } from '@/app/data/lessonData';
-import { LessonGridView } from '@/app/components/content/LessonGridView';
-import { Lesson } from '@/app/data/courses';
+import { SummarySession as SummarySessionWithAnnotations } from '@/content/SummarySessionNew';
+import { getLessonsForTopic } from '@/data/lessonData';
+import { LessonGridView } from '@/content/LessonGridView';
+import { Lesson } from '@/data/courses';
 import { Quote, StickyNote, Edit3 } from 'lucide-react';
 
 interface AnnotationBlock {

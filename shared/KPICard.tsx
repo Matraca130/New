@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { TrendingUp } from 'lucide-react';
-import { kpiCardClasses, iconBadgeClasses, components } from '@/app/design-system';
+import { kpiCardClasses, iconBadgeClasses, components } from '@/design-system';
 
 // ─────────────────────────────────────────────
 // SHARED KPI CARD

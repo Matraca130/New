@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
 import clsx from 'clsx';
 import {
@@ -7,10 +7,10 @@ import {
   Lightbulb, GraduationCap, ChevronRight, ChevronDown,
   BookOpen, X, PenLine, TextCursorInput, ListChecks,
 } from 'lucide-react';
-import { Topic, QuizQuestion } from '@/app/data/courses';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { headingStyle, components } from '@/app/design-system';
-import { iconBadgeClasses } from '@/app/design-system';
+import { Topic, QuizQuestion } from '@/data/courses';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { headingStyle, components } from '@/design-system';
+import { iconBadgeClasses } from '@/design-system';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 

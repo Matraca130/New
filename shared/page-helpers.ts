@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — Page Helpers (shared utility functions)
 //
-// IMPORT: import { getInitials, formatDate, formatRelative } from '@/app/components/shared/page-helpers';
+// IMPORT: import { getInitials, formatDate, formatRelative } from '@/shared/page-helpers';
 //
 // Previously duplicated across OwnerDashboardPage, OwnerMembersPage.
 // Centralizing here so parallel devs don't re-implement.

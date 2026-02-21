@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
-import { courses } from '@/app/data/courses';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { components, colors, headingStyle, layout } from '@/app/design-system';
+import { useApp } from '@/context/AppContext';
+import { useStudentDataContext } from '@/context/StudentDataContext';
+import { courses } from '@/data/courses';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { components, colors, headingStyle, layout } from '@/design-system';
 import { 
   MoreHorizontal,
   Play,
@@ -16,8 +16,8 @@ import {
   Box,
 } from 'lucide-react';
 
-import { CourseCard } from '@/app/components/shared/CourseCard';
-import { ActivityItem } from '@/app/components/shared/ActivityItem';
+import { CourseCard } from '@/shared/CourseCard';
+import { ActivityItem } from '@/shared/ActivityItem';
 
 export function WelcomeView() {
   const { setActiveView } = useApp();

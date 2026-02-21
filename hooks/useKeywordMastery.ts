@@ -10,7 +10,7 @@ import {
   masteryConfig,
   findKeyword,
   getAllKeywordTerms,
-} from '@/app/data/keywords';
+} from '@/data/keywords';
 
 export type { KeywordData, MasteryLevel };
 export { masteryConfig };

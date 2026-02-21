@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronUp, ChevronDown, ArrowLeft } from 'lucide-react';
 import clsx from 'clsx';
-import { Topic } from '@/app/data/courses';
-import { headingStyle, components } from '@/app/design-system';
+import { Topic } from '@/data/courses';
+import { headingStyle, components } from '@/design-system';
 
 export function TopicSidebar() {
   const { currentCourse, currentTopic, setCurrentTopic, setActiveView, setSidebarOpen } = useApp();

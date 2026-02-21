@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Topic } from '@/app/data/courses';
-import { Lesson } from '@/app/data/courses';
-import { getLessonsForTopic } from '@/app/data/lessonData';
+import { Topic } from '@/data/courses';
+import { Lesson } from '@/data/courses';
+import { getLessonsForTopic } from '@/data/lessonData';
 import { Play, FileText, ChevronDown, ChevronUp, Circle, CheckCircle2, MonitorPlay, BookOpen, Zap } from 'lucide-react';
 import clsx from 'clsx';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { headingStyle } from '@/app/design-system';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { headingStyle } from '@/design-system';
 
 interface LessonGridViewProps {
   topic: Topic;

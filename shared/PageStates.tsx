@@ -2,7 +2,7 @@
 // Axon — Page State Components (Loading, Empty, Error)
 //
 // IMPORT:
-//   import { LoadingPage, EmptyState, ErrorState } from '@/app/components/shared/PageStates';
+//   import { LoadingPage, EmptyState, ErrorState } from '@/shared/PageStates';
 //
 // Every page should use these for consistent UX:
 //
@@ -12,8 +12,8 @@
 // ============================================================
 
 import React from 'react';
-import { Skeleton } from '@/app/components/ui/skeleton';
-import { Button } from '@/app/components/ui/button';
+import { Skeleton } from '@/ui/skeleton';
+import { Button } from '@/ui/button';
 import { AlertCircle, RefreshCw, Inbox } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 

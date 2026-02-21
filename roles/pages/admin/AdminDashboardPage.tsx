@@ -7,7 +7,7 @@
 //   Refresh:  refreshStats
 //   Wrappers: (none — read-only view)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.getAdminScopes(membershipId)    — scope-limited view
 //   api.getAdminStudents(instId, opts)  — student metrics
 // ============================================================

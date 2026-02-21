@@ -6,7 +6,7 @@
 // Uses centralized config from apiConfig.ts
 // ============================================================
 
-import { realRequest, REAL_BACKEND_URL, getRealToken, ApiError } from '@/app/services/apiConfig';
+import { realRequest, REAL_BACKEND_URL, getRealToken, ApiError } from '@/services/apiConfig';
 import type {
   UUID,
   ApiResponse,
@@ -30,10 +30,10 @@ import type {
   ContentHierarchy,
   MembershipRole,
   ISODate,
-} from '@/app/types/platform';
+} from '@/types/platform';
 
 // Re-export error class from config for backward compatibility
-export { ApiError as PlatformApiError } from '@/app/services/apiConfig';
+export { ApiError as PlatformApiError } from '@/services/apiConfig';
 
 // Use centralized request helper
 const request = realRequest;

@@ -4,7 +4,7 @@
 // ============================================================
 
 import React, { useState, useCallback } from 'react';
-import { FIGMA_BACKEND_URL } from '@/app/services/apiConfig';
+import { FIGMA_BACKEND_URL } from '@/services/apiConfig';
 import { publicAnonKey } from '/utils/supabase/info';
 
 // ── Types ─────────────────────────────────────────────────

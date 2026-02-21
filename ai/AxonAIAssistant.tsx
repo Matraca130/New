@@ -4,9 +4,9 @@
 // ============================================================
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { headingStyle, components, colors } from '@/design-system';
 import {
   X,
   Send,
@@ -26,8 +26,8 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import clsx from 'clsx';
-import * as ai from '@/app/services/aiService';
-import type { ChatMessage, GeneratedFlashcard, GeneratedQuestion } from '@/app/services/aiService';
+import * as ai from '@/services/aiService';
+import type { ChatMessage, GeneratedFlashcard, GeneratedQuestion } from '@/services/aiService';
 
 // ── Types ─────────────────────────────────────────────────
 

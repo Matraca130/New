@@ -7,7 +7,7 @@
 //   Refresh:  refreshMembers (scopes affect member capabilities)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.getInstitutionAdminScopes(instId)
 //   api.getAdminScopes(membershipId)
 //   api.createAdminScope({ membership_id, scope_type, scope_id })

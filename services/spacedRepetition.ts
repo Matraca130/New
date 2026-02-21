@@ -24,7 +24,7 @@
 
 // KeywordState is now defined in types/student.ts (canonical location).
 // Re-exported here for backward compatibility.
-import type { KeywordState as _KeywordState } from '@/app/types/student';
+import type { KeywordState as _KeywordState } from '@/types/student';
 export type KeywordState = _KeywordState;
 
 /**

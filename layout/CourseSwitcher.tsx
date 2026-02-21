@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
-import { courses } from '@/app/data/courses';
-import { components, animation } from '@/app/design-system';
+import { useApp } from '@/context/AppContext';
+import { courses } from '@/data/courses';
+import { components, animation } from '@/design-system';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, BookOpen } from 'lucide-react';
 import clsx from 'clsx';

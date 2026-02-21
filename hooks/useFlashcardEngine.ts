@@ -5,11 +5,11 @@
 // ============================================================
 
 import { useState, useCallback, useRef } from 'react';
-import type { Flashcard } from '@/app/data/courses';
-import type { FlashcardReview, StudySession } from '@/app/types/student';
+import type { Flashcard } from '@/data/courses';
+import type { FlashcardReview, StudySession } from '@/types/student';
 
 // Backend persistence helpers (fire-and-forget)
-import * as studentApi from '@/app/services/studentApi';
+import * as studentApi from '@/services/studentApi';
 
 interface UseFlashcardEngineOpts {
   studentId: string | null;

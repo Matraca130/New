@@ -7,7 +7,7 @@
 //   Refresh:  refreshPlans (after create/update/delete/set-default)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.createInstitutionPlan({ institution_id, name, ... })
 //   api.updateInstitutionPlan(id, data)
 //   api.deleteInstitutionPlan(id)
@@ -15,36 +15,36 @@
 // ============================================================
 
 import React, { useState, useMemo, useCallback } from 'react';
-import { usePlatformData } from '@/app/context/PlatformDataContext';
-import * as api from '@/app/services/platformApi';
+import { usePlatformData } from '@/context/PlatformDataContext';
+import * as api from '@/services/platformApi';
 import { motion } from 'motion/react';
 import {
   formatDate, formatPrice,
-} from '@/app/components/shared/page-helpers';
+} from '@/shared/page-helpers';
 import { toast, Toaster } from 'sonner';
 
 // UI Components
-import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
-import { Label } from '@/app/components/ui/label';
-import { Skeleton } from '@/app/components/ui/skeleton';
-import { Badge } from '@/app/components/ui/badge';
-import { Textarea } from '@/app/components/ui/textarea';
-import { Switch } from '@/app/components/ui/switch';
+import { Button } from '@/ui/button';
+import { Input } from '@/ui/input';
+import { Label } from '@/ui/label';
+import { Skeleton } from '@/ui/skeleton';
+import { Badge } from '@/ui/badge';
+import { Textarea } from '@/ui/textarea';
+import { Switch } from '@/ui/switch';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
-} from '@/app/components/ui/dialog';
+} from '@/ui/dialog';
 import {
   AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle,
   AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction,
-} from '@/app/components/ui/alert-dialog';
+} from '@/ui/alert-dialog';
 import {
   Select, SelectTrigger, SelectContent, SelectItem, SelectValue,
-} from '@/app/components/ui/select';
+} from '@/ui/select';
 import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel,
-} from '@/app/components/ui/dropdown-menu';
+} from '@/ui/dropdown-menu';
 
 // Icons
 import {
@@ -54,7 +54,7 @@ import {
 } from 'lucide-react';
 
 // Types
-import type { InstitutionPlan } from '@/app/types/platform';
+import type { InstitutionPlan } from '@/types/platform';
 
 // ── Constants ─────────────────────────────────────────────
 

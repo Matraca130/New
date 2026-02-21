@@ -2,7 +2,7 @@
 // Axon — Professor: Dashboard
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: GET /server/flashcards/stats, GET /server/quiz/stats, GET /server/admin-students
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';

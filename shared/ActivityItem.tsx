@@ -1,5 +1,5 @@
 import React from 'react';
-import { components } from '@/app/design-system';
+import { components } from '@/design-system';
 
 interface ActivityItemProps {
   icon: React.ReactNode;

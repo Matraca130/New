@@ -2,7 +2,7 @@
 // Axon — Professor: Students
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: GET /server/admin-students, GET /server/admin-students/:id/progress|stats
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';

@@ -7,7 +7,7 @@
 //   Refresh:  refreshSubscription (after create/update/cancel)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.getInstitutionSubscription(instId)
 //   api.getSubscription(id)
 //   api.createSubscription({ institution_id, plan_id, ... })

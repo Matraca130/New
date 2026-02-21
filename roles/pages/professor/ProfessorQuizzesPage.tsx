@@ -2,7 +2,7 @@
 // Axon — Professor: Quizzes
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: GET /server/quiz, POST /server/quiz/generate, POST /server/quiz/submit, GET /server/quiz-content
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';

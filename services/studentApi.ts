@@ -17,7 +17,7 @@
 // ============================================================
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- realRequest is pre-imported for the migration toggle below
-import { figmaRequest, realRequest } from '@/app/services/apiConfig';
+import { figmaRequest, realRequest } from '@/services/apiConfig';
 import type {
   StudentProfile,
   StudentStats,
@@ -26,7 +26,7 @@ import type {
   StudySession,
   DailyActivity,
   StudySummary,
-} from '@/app/types/student';
+} from '@/types/student';
 
 // ── Request function toggle ───────────────────────────────
 // Student data CRUD → flip to `realRequest` when routes-student.tsx

@@ -27,32 +27,32 @@
 //   ```tsx
 //   // 1. Imports
 //   import React, { useState, useMemo, useCallback } from 'react';
-//   import { usePlatformData } from '@/app/context/PlatformDataContext';
-//   import { useAuth } from '@/app/context/AuthContext';
-//   import * as api from '@/app/services/platformApi';
+//   import { usePlatformData } from '@/context/PlatformDataContext';
+//   import { useAuth } from '@/context/AuthContext';
+//   import * as api from '@/services/platformApi';
 //   import { toast, Toaster } from 'sonner';
 //
 //   // 2. Shared components (USE THESE, don't re-invent)
-//   import { PageHeader } from '@/app/components/shared/PageHeader';
-//   import { FadeIn, STAGGER_DELAY } from '@/app/components/shared/FadeIn';
-//   import { LoadingPage, EmptyState, ErrorState } from '@/app/components/shared/PageStates';
-//   import { ConfirmDialog } from '@/app/components/shared/ConfirmDialog';
-//   import { SearchFilterBar } from '@/app/components/shared/SearchFilterBar';
-//   import { RoleBadge, StatusBadge } from '@/app/components/shared/RoleBadge';
-//   import { getInitials, formatDate, formatRelative, matchesSearch } from '@/app/components/shared/page-helpers';
-//   import { ROLE_CONFIG, ROLE_FILTERS } from '@/app/components/shared/role-helpers';
+//   import { PageHeader } from '@/shared/PageHeader';
+//   import { FadeIn, STAGGER_DELAY } from '@/shared/FadeIn';
+//   import { LoadingPage, EmptyState, ErrorState } from '@/shared/PageStates';
+//   import { ConfirmDialog } from '@/shared/ConfirmDialog';
+//   import { SearchFilterBar } from '@/shared/SearchFilterBar';
+//   import { RoleBadge, StatusBadge } from '@/shared/RoleBadge';
+//   import { getInitials, formatDate, formatRelative, matchesSearch } from '@/shared/page-helpers';
+//   import { ROLE_CONFIG, ROLE_FILTERS } from '@/shared/role-helpers';
 //
 //   // 3. UI components (shadcn/radix — pick what you need)
-//   import { Button } from '@/app/components/ui/button';
-//   import { Input } from '@/app/components/ui/input';
-//   import { Dialog, DialogContent, ... } from '@/app/components/ui/dialog';
+//   import { Button } from '@/ui/button';
+//   import { Input } from '@/ui/input';
+//   import { Dialog, DialogContent, ... } from '@/ui/dialog';
 //   // etc.
 //
 //   // 4. Icons (lucide-react)
 //   import { Users, Plus, Trash2, ... } from 'lucide-react';
 //
 //   // 5. Types
-//   import type { MemberListItem, ... } from '@/app/types/platform';
+//   import type { MemberListItem, ... } from '@/types/platform';
 //
 //
 //   export function MyPage() {
@@ -140,20 +140,20 @@
 //
 // ── COMPONENTES SHARED DISPONIBLES ────────────────────────
 //
-//   @/app/components/shared/PageHeader.tsx      — header de pagina con icon+title+actions
-//   @/app/components/shared/FadeIn.tsx          — wrapper de animacion fade-in
-//   @/app/components/shared/PageStates.tsx      — LoadingPage, EmptyState, ErrorState
-//   @/app/components/shared/ConfirmDialog.tsx   — dialogo de confirmacion reutilizable
-//   @/app/components/shared/SearchFilterBar.tsx — barra de busqueda + filtros
-//   @/app/components/shared/RoleBadge.tsx       — badges de rol y estado
-//   @/app/components/shared/KPICard.tsx         — card de KPI para dashboards
-//   @/app/components/shared/page-helpers.ts     — getInitials, formatDate, formatRelative, matchesSearch
-//   @/app/components/shared/role-helpers.ts     — ROLE_CONFIG, ROLE_FILTERS, ASSIGNABLE_ROLES
+//   @/shared/PageHeader.tsx      — header de pagina con icon+title+actions
+//   @/shared/FadeIn.tsx          — wrapper de animacion fade-in
+//   @/shared/PageStates.tsx      — LoadingPage, EmptyState, ErrorState
+//   @/shared/ConfirmDialog.tsx   — dialogo de confirmacion reutilizable
+//   @/shared/SearchFilterBar.tsx — barra de busqueda + filtros
+//   @/shared/RoleBadge.tsx       — badges de rol y estado
+//   @/shared/KPICard.tsx         — card de KPI para dashboards
+//   @/shared/page-helpers.ts     — getInitials, formatDate, formatRelative, matchesSearch
+//   @/shared/role-helpers.ts     — ROLE_CONFIG, ROLE_FILTERS, ASSIGNABLE_ROLES
 //
 //
 // ── UI COMPONENTS (shadcn/radix) ──────────────────────────
 //
-//   Todos en @/app/components/ui/:
+//   Todos en @/ui/:
 //     button, input, label, textarea, select, switch, checkbox,
 //     dialog, alert-dialog, dropdown-menu, badge, avatar, skeleton,
 //     table, tabs, card, progress, separator, tooltip, popover,

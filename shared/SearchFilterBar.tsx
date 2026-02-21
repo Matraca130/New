@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — SearchFilterBar (reusable search + filter bar)
 //
-// IMPORT: import { SearchFilterBar } from '@/app/components/shared/SearchFilterBar';
+// IMPORT: import { SearchFilterBar } from '@/shared/SearchFilterBar';
 //
 // Usage:
 //   <SearchFilterBar
@@ -13,7 +13,7 @@
 // ============================================================
 
 import React from 'react';
-import { Input } from '@/app/components/ui/input';
+import { Input } from '@/ui/input';
 import { Search } from 'lucide-react';
 
 interface SearchFilterBarProps {

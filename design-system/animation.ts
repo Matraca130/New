@@ -6,8 +6,8 @@
  * transiciones de pagina, entrada de cards, progress bars,
  * sidebar toggle y dropdowns.
  *
- * Standalone:  import { animation } from '@/app/design-system/animation';
- * Barrel:      import { animation } from '@/app/design-system';
+ * Standalone:  import { animation } from '@/design-system/animation';
+ * Barrel:      import { animation } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

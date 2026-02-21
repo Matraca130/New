@@ -7,7 +7,7 @@
 //   Refresh:  refreshPlans (rules are tied to plans)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.getPlanAccessRules(planId)
 //   api.createAccessRules({ plan_id, rules })
 //   api.deleteAccessRule(id)

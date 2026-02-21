@@ -1,5 +1,5 @@
 import React from 'react';
-import { components, headingStyle } from '@/app/design-system';
+import { components, headingStyle } from '@/design-system';
 
 interface CourseCardProps {
   title: string;

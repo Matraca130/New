@@ -11,12 +11,12 @@
 // ============================================================
 import type { RouteObject } from 'react-router';
 
-import { AdminDashboardPage } from '@/app/components/roles/pages/admin/AdminDashboardPage';
-import { AdminMembersPage } from '@/app/components/roles/pages/admin/AdminMembersPage';
-import { AdminContentPage } from '@/app/components/roles/pages/admin/AdminContentPage';
-import { AdminScopesPage } from '@/app/components/roles/pages/admin/AdminScopesPage';
-import { AdminReportsPage } from '@/app/components/roles/pages/admin/AdminReportsPage';
-import { AdminSettingsPage } from '@/app/components/roles/pages/admin/AdminSettingsPage';
+import { AdminDashboardPage } from '@/roles/pages/admin/AdminDashboardPage';
+import { AdminMembersPage } from '@/roles/pages/admin/AdminMembersPage';
+import { AdminContentPage } from '@/roles/pages/admin/AdminContentPage';
+import { AdminScopesPage } from '@/roles/pages/admin/AdminScopesPage';
+import { AdminReportsPage } from '@/roles/pages/admin/AdminReportsPage';
+import { AdminSettingsPage } from '@/roles/pages/admin/AdminSettingsPage';
 
 export const adminChildren: RouteObject[] = [
   { index: true,      Component: AdminDashboardPage },

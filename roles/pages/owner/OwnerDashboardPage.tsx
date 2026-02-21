@@ -7,33 +7,33 @@
 //   Refresh:  refreshStats (after any action that changes metrics)
 //   Wrappers: (none — read-only view)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   (none — all data comes from context cache)
 // ============================================================
 
 import React, { useMemo } from 'react';
-import { usePlatformData } from '@/app/context/PlatformDataContext';
-import { useAuth } from '@/app/context/AuthContext';
+import { usePlatformData } from '@/context/PlatformDataContext';
+import { useAuth } from '@/context/AuthContext';
 import { motion } from 'motion/react';
 import {
   getInitials, formatDate, formatRelative,
-} from '@/app/components/shared/page-helpers';
+} from '@/shared/page-helpers';
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip,
 } from 'recharts';
-import { KPICard, TrendBadge } from '@/app/components/shared/KPICard';
-import { Skeleton } from '@/app/components/ui/skeleton';
+import { KPICard, TrendBadge } from '@/shared/KPICard';
+import { Skeleton } from '@/ui/skeleton';
 import {
   Table, TableHeader, TableBody, TableHead, TableRow, TableCell,
-} from '@/app/components/ui/table';
-import { Avatar, AvatarFallback } from '@/app/components/ui/avatar';
+} from '@/ui/table';
+import { Avatar, AvatarFallback } from '@/ui/avatar';
 import {
   Users, GraduationCap, UserX, CreditCard,
   LayoutDashboard, AlertCircle, RefreshCw,
   Crown, Shield, BookOpen, Building2,
   CheckCircle2, Clock, XCircle, Sparkles,
 } from 'lucide-react';
-import type { MemberListItem } from '@/app/types/platform';
+import type { MemberListItem } from '@/types/platform';
 
 // ── Constants ─────────────────────────────────────────────
 

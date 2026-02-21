@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router';
-import { Course, Topic, courses } from '@/app/data/courses';
+import { Course, Topic, courses } from '@/data/courses';
 
 // @refresh reset
 

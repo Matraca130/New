@@ -4,7 +4,7 @@
 // All scoring/gap-analysis runs server-side.
 // ============================================================
 
-import { aiGenerateFlashcards } from '@/app/services/studentApi';
+import { aiGenerateFlashcards } from '@/services/studentApi';
 import type { KeywordCollection } from './keywordManager';
 
 export interface GeneratedFlashcard {

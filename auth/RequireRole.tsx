@@ -4,7 +4,7 @@
 // ============================================================
 import React from 'react';
 import { Navigate, Outlet } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 interface RequireRoleProps {
   roles: string[];

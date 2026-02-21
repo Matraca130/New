@@ -7,7 +7,7 @@
 //   Refresh:  refreshStats
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.getInstitutionDashboardStats(instId)
 //   api.getAdminStudents(instId, opts)
 //   api.getAdminStudentDetail(instId, userId)

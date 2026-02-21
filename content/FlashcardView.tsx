@@ -1,8 +1,8 @@
 import React from 'react';
 import { AnimatePresence } from 'motion/react';
-import { useFlashcardNavigation } from '@/app/hooks/useFlashcardNavigation';
-import { useFlashcardEngine } from '@/app/hooks/useFlashcardEngine';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
+import { useFlashcardNavigation } from '@/hooks/useFlashcardNavigation';
+import { useFlashcardEngine } from '@/hooks/useFlashcardEngine';
+import { useStudentDataContext } from '@/context/StudentDataContext';
 
 // ── Extracted sub-screens ──
 import { HubScreen, SectionScreen, DeckScreen, SessionScreen, SummaryScreen } from './flashcard';

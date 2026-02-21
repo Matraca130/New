@@ -7,7 +7,7 @@
 //   Refresh:  (none — personal settings only)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   (personal settings managed via AuthContext, not platformApi)
 // ============================================================
 import React from 'react';

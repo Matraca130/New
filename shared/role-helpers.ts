@@ -1,13 +1,13 @@
 // ============================================================
 // Axon — Role Helpers (shared constants for all role-based pages)
 //
-// IMPORT: import { ROLE_CONFIG, ROLE_FILTERS, getRoleBadgeClasses, ... } from '@/app/components/shared/role-helpers';
+// IMPORT: import { ROLE_CONFIG, ROLE_FILTERS, getRoleBadgeClasses, ... } from '@/shared/role-helpers';
 //
 // Previously duplicated across OwnerDashboardPage, OwnerMembersPage, etc.
 // Centralizing here so parallel devs don't copy-paste.
 // ============================================================
 
-import type { MembershipRole } from '@/app/types/platform';
+import type { MembershipRole } from '@/types/platform';
 
 // ── Role visual config ────────────────────────────────────
 

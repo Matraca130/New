@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — FadeIn Animation Wrapper
 //
-// IMPORT: import { FadeIn } from '@/app/components/shared/FadeIn';
+// IMPORT: import { FadeIn } from '@/shared/FadeIn';
 //
 // Usage:
 //   <FadeIn>content</FadeIn>

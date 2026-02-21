@@ -2,7 +2,7 @@
 // Axon — Professor: AI Tools
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: POST /server/ai/generate-flashcards|generate-quiz|feedback|smart-study
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';

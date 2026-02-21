@@ -5,8 +5,8 @@
  * Niveles de sombra: cards, hovers, charts, dropdowns, tooltips.
  * Sin glassmorphism — siempre sombras suaves y solidas.
  *
- * Standalone:  import { shadows } from '@/app/design-system/shadows';
- * Barrel:      import { shadows } from '@/app/design-system';
+ * Standalone:  import { shadows } from '@/design-system/shadows';
+ * Barrel:      import { shadows } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

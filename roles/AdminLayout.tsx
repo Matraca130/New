@@ -3,7 +3,7 @@
 // ============================================================
 import React from 'react';
 import { RoleShell, type NavItemConfig } from './RoleShell';
-import { PlatformDataProvider } from '@/app/context/PlatformDataContext';
+import { PlatformDataProvider } from '@/context/PlatformDataContext';
 import {
   LayoutDashboard, Users, FileText, ShieldCheck,
   Settings, BarChart3, Shield,

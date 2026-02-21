@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — RoleBadge (displays a role with icon and color)
 //
-// IMPORT: import { RoleBadge } from '@/app/components/shared/RoleBadge';
+// IMPORT: import { RoleBadge } from '@/shared/RoleBadge';
 //
 // Usage:
 //   <RoleBadge role="admin" />
@@ -9,10 +9,10 @@
 // ============================================================
 
 import React from 'react';
-import { Badge } from '@/app/components/ui/badge';
+import { Badge } from '@/ui/badge';
 import { Crown, Shield, BookOpen, GraduationCap } from 'lucide-react';
 import { ROLE_CONFIG } from './role-helpers';
-import type { MembershipRole } from '@/app/types/platform';
+import type { MembershipRole } from '@/types/platform';
 
 const ROLE_ICONS: Record<MembershipRole, React.ReactNode> = {
   owner:     <Crown size={12} />,

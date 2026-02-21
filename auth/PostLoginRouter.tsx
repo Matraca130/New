@@ -5,7 +5,7 @@
 // ============================================================
 import React from 'react';
 import { Navigate } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 /** Map role → default landing route */
 const ROLE_ROUTES: Record<string, string> = {

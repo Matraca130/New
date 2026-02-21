@@ -8,10 +8,10 @@
  * IMPORTANT: The canonical ViewType is defined in AppContext.tsx.
  * Do NOT re-define ViewType here. Import it from AppContext if needed:
  *
- *   import type { ViewType } from '@/app/context/AppContext';
+ *   import type { ViewType } from '@/context/AppContext';
  *
- * Standalone:  import { navigation } from '@/app/design-system/navigation';
- * Barrel:      import { navigation } from '@/app/design-system';
+ * Standalone:  import { navigation } from '@/design-system/navigation';
+ * Barrel:      import { navigation } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────
@@ -70,7 +70,7 @@ export const navigation = {
 // ─────────────────────────────────────────────
 
 /**
- * @deprecated Import ViewType from '@/app/context/AppContext' instead.
+ * @deprecated Import ViewType from '@/context/AppContext' instead.
  * Kept temporarily for backward compatibility.
  */
 export type ViewType = (typeof navigation.views)[number];

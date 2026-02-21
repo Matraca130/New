@@ -11,12 +11,12 @@
  * ║  Este barrel re-exporta TODO, asi que los imports existentes ║
  * ║  siguen funcionando sin ningun cambio:                       ║
  * ║                                                              ║
- * ║    import { colors, headingStyle } from '@/app/design-system';║
+ * ║    import { colors, headingStyle } from '@/design-system';║
  * ║                                                              ║
  * ║  Para imports modulares (multi-proyecto):                    ║
  * ║                                                              ║
- * ║    import { colors } from '@/app/design-system/colors';      ║
- * ║    import { headingStyle } from '@/app/design-system/typography'; ║
+ * ║    import { colors } from '@/design-system/colors';      ║
+ * ║    import { headingStyle } from '@/design-system/typography'; ║
  * ╚══════════════════════════════════════════════════════════════╝
  *
  * ESTRUCTURA DE MODULOS:

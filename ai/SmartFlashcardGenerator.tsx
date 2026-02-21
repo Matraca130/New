@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { headingStyle, components, colors } from '@/design-system';
 import {
   Sparkles,
   Target,
@@ -20,12 +20,12 @@ import {
   KeywordCollection,
   getKeywordsNeedingCards,
   getKeywordStats,
-} from '@/app/services/keywordManager';
+} from '@/services/keywordManager';
 import {
   smartGenerateFlashcards,
   estimateFlashcardNeeds,
   GeneratedFlashcard,
-} from '@/app/services/aiFlashcardGenerator';
+} from '@/services/aiFlashcardGenerator';
 
 interface SmartFlashcardGeneratorProps {
   courseId: string;

@@ -5,8 +5,8 @@
  * Dimensiones y espaciado del layout: sidebar, header, content area,
  * grids responsivos y panel lateral.
  *
- * Standalone:  import { layout } from '@/app/design-system/layout';
- * Barrel:      import { layout } from '@/app/design-system';
+ * Standalone:  import { layout } from '@/design-system/layout';
+ * Barrel:      import { layout } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

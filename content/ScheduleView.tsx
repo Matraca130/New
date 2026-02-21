@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { headingStyle, components, colors } from '@/design-system';
 import {
   Calendar as CalendarIcon,
   ChevronLeft,
@@ -44,7 +44,7 @@ import {
   subDays
 } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
 
 // Method icons lookup
 const METHOD_ICONS: Record<string, React.ReactNode> = {

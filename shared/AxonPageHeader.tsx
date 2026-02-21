@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronLeft } from 'lucide-react';
-import { AxonBrand, AxonBadge, AxonWatermark } from '@/app/components/shared/AxonLogo';
-import { components, headingStyle } from '@/app/design-system';
+import { AxonBrand, AxonBadge, AxonWatermark } from '@/shared/AxonLogo';
+import { components, headingStyle } from '@/design-system';
 
 interface AxonPageHeaderProps {
   title: string;

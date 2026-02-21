@@ -6,8 +6,8 @@
  * filtros, progress bars, sidebar, header, KPI, charts.
  * Incluye helpers utilitarios para clases compuestas.
  *
- * Standalone:  import { components, iconClasses, cardClasses, ctaButtonClasses } from '@/app/design-system/components';
- * Barrel:      import { components, iconClasses } from '@/app/design-system';
+ * Standalone:  import { components, iconClasses, cardClasses, ctaButtonClasses } from '@/design-system/components';
+ * Barrel:      import { components, iconClasses } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

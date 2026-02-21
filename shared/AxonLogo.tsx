@@ -1,10 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
-import { brand } from '@/app/design-system';
+import { brand } from '@/design-system';
 
 /**
  * AxonLogo — Tesla-inspired reusable logo component.
- * Tokens sourced from @/app/design-system (brand.logo)
+ * Tokens sourced from @/design-system (brand.logo)
  *
  * Sizes:  'xs' | 'sm' | 'md' | 'lg' | 'watermark'
  * Theme:  'light' (white SVG/text) | 'dark' (dark SVG/text) | 'gradient' (teal text + teal SVG)

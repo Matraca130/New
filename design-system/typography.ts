@@ -5,8 +5,8 @@
  * Sistema tipografico: familias (Georgia heading, Inter body),
  * reglas de uso por contexto, y helpers de inline style.
  *
- * Standalone:  import { typography, headingStyle, bodyStyle } from '@/app/design-system/typography';
- * Barrel:      import { headingStyle } from '@/app/design-system';
+ * Standalone:  import { typography, headingStyle, bodyStyle } from '@/design-system/typography';
+ * Barrel:      import { headingStyle } from '@/design-system';
  */
 
 import type { CSSProperties } from 'react';

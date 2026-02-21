@@ -5,8 +5,8 @@
  * Paleta completa de colores: primarios (teal), superficies, bordes,
  * texto, semanticos, mastery, ratings, acentos de disciplina y charts.
  *
- * Standalone:  import { colors } from '@/app/design-system/colors';
- * Barrel:      import { colors } from '@/app/design-system';
+ * Standalone:  import { colors } from '@/design-system/colors';
+ * Barrel:      import { colors } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

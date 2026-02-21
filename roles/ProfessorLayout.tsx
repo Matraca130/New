@@ -3,7 +3,7 @@
 // ============================================================
 import React from 'react';
 import { RoleShell, type NavItemConfig } from './RoleShell';
-import { PlatformDataProvider } from '@/app/context/PlatformDataContext';
+import { PlatformDataProvider } from '@/context/PlatformDataContext';
 import {
   LayoutDashboard, BookOpen, ListTree, CreditCard,
   Users, ClipboardList, Settings, GraduationCap, Brain,

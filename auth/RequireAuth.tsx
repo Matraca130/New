@@ -4,8 +4,8 @@
 // ============================================================
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
+import { useAuth } from '@/context/AuthContext';
+import { AxonLogo } from '@/shared/AxonLogo';
 import { Loader2 } from 'lucide-react';
 
 export function RequireAuth() {

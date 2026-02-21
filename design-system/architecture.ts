@@ -7,7 +7,7 @@
  * convenciones de codigo y patrones de backend.
  *
  * USO:
- *   import { architecture, dataModels, apiEndpoints } from '@/app/design-system/architecture';
+ *   import { architecture, dataModels, apiEndpoints } from '@/design-system/architecture';
  *
  * Este archivo es DOCUMENTACION EJECUTABLE: los tipos son reales,
  * los endpoints son reales, las convenciones son las que usamos.
@@ -470,9 +470,9 @@ export const conventions = {
     react:        "import React, { useState, useEffect } from 'react'",
     motion:       "import { motion, AnimatePresence } from 'motion/react'",
     lucide:       "import { Home, BookOpen, Layers } from 'lucide-react'",
-    designSystem: "import { colors, components, headingStyle } from '@/app/design-system'",
+    designSystem: "import { colors, components, headingStyle } from '@/design-system'",
     designSystemModular: "import { colors } from '@axon/design-system/colors' — para proyectos externos que instalan el paquete",
-    context:      "import { useApp } from '@/app/context/AppContext'",
+    context:      "import { useApp } from '@/context/AppContext'",
   },
 
   /** Component patterns */
@@ -497,7 +497,7 @@ export const conventions = {
   },
 
   /** Migration status — 26/27 componentes migrados al design system (solo ModelViewer3D no aplica: es codigo Three.js puro) */
-  migrationStatus: 'COMPLETE — todos los componentes importan de @/app/design-system',
+  migrationStatus: 'COMPLETE — todos los componentes importan de @/design-system',
 
   /** Deep token usage — componentes que usan helpers del design system */
   deepTokenUsage: {

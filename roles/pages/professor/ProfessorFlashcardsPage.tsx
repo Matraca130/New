@@ -2,7 +2,7 @@
 // Axon — Professor: Flashcards
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: GET/POST/PUT /server/flashcards, GET /server/flashcards/due
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';

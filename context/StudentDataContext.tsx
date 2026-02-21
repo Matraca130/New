@@ -5,8 +5,8 @@
 // ============================================================
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode, useRef } from 'react';
-import * as api from '@/app/services/studentApi';
-import { useAuth } from '@/app/context/AuthContext';
+import * as api from '@/services/studentApi';
+import { useAuth } from '@/context/AuthContext';
 import type {
   StudentProfile,
   StudentStats,
@@ -14,7 +14,7 @@ import type {
   DailyActivity,
   StudySession,
   FlashcardReview,
-} from '@/app/types/student';
+} from '@/types/student';
 
 // @refresh reset
 

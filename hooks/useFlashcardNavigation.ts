@@ -4,8 +4,8 @@
 // ============================================================
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useApp } from '@/app/context/AppContext';
-import type { Section, Topic } from '@/app/data/courses';
+import { useApp } from '@/context/AppContext';
+import type { Section, Topic } from '@/data/courses';
 import type { FlashcardViewState } from './flashcard-types';
 
 export function useFlashcardNavigation() {

@@ -5,8 +5,8 @@
  * Paletas de acento para secciones de contenido:
  * teal-only (estandar), multi-color (por seccion), y por disciplina.
  *
- * Standalone:  import { sectionColors } from '@/app/design-system/section-colors';
- * Barrel:      import { sectionColors } from '@/app/design-system';
+ * Standalone:  import { sectionColors } from '@/design-system/section-colors';
+ * Barrel:      import { sectionColors } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

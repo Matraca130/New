@@ -1,6 +1,6 @@
 import React from 'react';
-import { useApp, type ViewType } from '@/app/context/AppContext';
-import { components, animation, layout } from '@/app/design-system';
+import { useApp, type ViewType } from '@/context/AppContext';
+import { components, animation, layout } from '@/design-system';
 import { motion } from 'motion/react';
 import { 
   LayoutDashboard, 

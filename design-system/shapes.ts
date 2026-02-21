@@ -5,8 +5,8 @@
  * Border radius para cada tipo de elemento:
  * cards, botones (pill/action/filter), iconos, avatars, inputs, badges.
  *
- * Standalone:  import { shapes } from '@/app/design-system/shapes';
- * Barrel:      import { shapes } from '@/app/design-system';
+ * Standalone:  import { shapes } from '@/design-system/shapes';
+ * Barrel:      import { shapes } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

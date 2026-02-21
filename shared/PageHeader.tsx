@@ -1,7 +1,7 @@
 // ============================================================
 // Axon — PageHeader (standardized page header for all role pages)
 //
-// IMPORT: import { PageHeader } from '@/app/components/shared/PageHeader';
+// IMPORT: import { PageHeader } from '@/shared/PageHeader';
 //
 // Usage:
 //   <PageHeader

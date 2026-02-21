@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
+import { useApp } from '@/context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, Folder, FolderOpen, PlayCircle, BookOpen, Clock, CheckCircle2, Layers } from 'lucide-react';
 import clsx from 'clsx';
-import { Topic, Section, Semester } from '@/app/data/courses';
-import { getLessonsForTopic } from '@/app/data/lessonData';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { headingStyle, components, colors } from '@/app/design-system';
-import { iconBadgeClasses } from '@/app/design-system';
+import { Topic, Section, Semester } from '@/data/courses';
+import { getLessonsForTopic } from '@/data/lessonData';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { headingStyle, components, colors } from '@/design-system';
+import { iconBadgeClasses } from '@/design-system';
 
 interface SectionCardProps {
   section: Section;

@@ -5,9 +5,9 @@
 // ============================================================
 import React, { useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
-import { Membership } from '@/app/services/authApi';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
+import { useAuth } from '@/context/AuthContext';
+import { Membership } from '@/services/authApi';
+import { AxonLogo } from '@/shared/AxonLogo';
 import { motion } from 'motion/react';
 import {
   Crown, Shield, GraduationCap, BookOpen,

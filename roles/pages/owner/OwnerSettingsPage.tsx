@@ -7,7 +7,7 @@
 //   Refresh:  refreshInstitution (after settings update)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.updateInstitution(instId, { settings: {...} })
 //   (auth settings via AuthContext, not platformApi)
 // ============================================================

@@ -4,7 +4,7 @@
 // ============================================================
 
 import React, { useState } from 'react';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
+import { useStudentDataContext } from '@/context/StudentDataContext';
 import {
   User,
   Database,
@@ -28,9 +28,9 @@ import {
   MoreHorizontal,
 } from 'lucide-react';
 
-import { NavItem } from '@/app/components/shared/NavItem';
-import { CourseCard } from '@/app/components/shared/CourseCard';
-import { ActivityItem } from '@/app/components/shared/ActivityItem';
+import { NavItem } from '@/shared/NavItem';
+import { CourseCard } from '@/shared/CourseCard';
+import { ActivityItem } from '@/shared/ActivityItem';
 
 // ── Mapping helpers for StudentDataPanel data → shared component props ──
 const COURSE_VISUALS = [

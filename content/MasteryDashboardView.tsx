@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
+import { useApp } from '@/context/AppContext';
+import { useStudentDataContext } from '@/context/StudentDataContext';
 import { motion } from 'motion/react';
 import {
   ChevronLeft,
@@ -15,8 +15,8 @@ import {
   BookOpen,
 } from 'lucide-react';
 import clsx from 'clsx';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { headingStyle, components, colors } from '@/design-system';
 
 // Mock data
 interface CalendarEvent {

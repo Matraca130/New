@@ -4,8 +4,8 @@
 // ============================================================
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
+import { useAuth } from '@/context/AuthContext';
+import { AxonLogo } from '@/shared/AxonLogo';
 import { motion } from 'motion/react';
 import { Eye, EyeOff, LogIn, UserPlus, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 

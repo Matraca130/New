@@ -11,14 +11,14 @@
 // ============================================================
 import type { RouteObject } from 'react-router';
 
-import { ProfessorDashboardPage } from '@/app/components/roles/pages/professor/ProfessorDashboardPage';
-import { ProfessorCoursesPage } from '@/app/components/roles/pages/professor/ProfessorCoursesPage';
-import { ProfessorCurriculumPage } from '@/app/components/roles/pages/professor/ProfessorCurriculumPage';
-import { ProfessorFlashcardsPage } from '@/app/components/roles/pages/professor/ProfessorFlashcardsPage';
-import { ProfessorQuizzesPage } from '@/app/components/roles/pages/professor/ProfessorQuizzesPage';
-import { ProfessorStudentsPage } from '@/app/components/roles/pages/professor/ProfessorStudentsPage';
-import { ProfessorAIPage } from '@/app/components/roles/pages/professor/ProfessorAIPage';
-import { ProfessorSettingsPage } from '@/app/components/roles/pages/professor/ProfessorSettingsPage';
+import { ProfessorDashboardPage } from '@/roles/pages/professor/ProfessorDashboardPage';
+import { ProfessorCoursesPage } from '@/roles/pages/professor/ProfessorCoursesPage';
+import { ProfessorCurriculumPage } from '@/roles/pages/professor/ProfessorCurriculumPage';
+import { ProfessorFlashcardsPage } from '@/roles/pages/professor/ProfessorFlashcardsPage';
+import { ProfessorQuizzesPage } from '@/roles/pages/professor/ProfessorQuizzesPage';
+import { ProfessorStudentsPage } from '@/roles/pages/professor/ProfessorStudentsPage';
+import { ProfessorAIPage } from '@/roles/pages/professor/ProfessorAIPage';
+import { ProfessorSettingsPage } from '@/roles/pages/professor/ProfessorSettingsPage';
 
 export const professorChildren: RouteObject[] = [
   { index: true,        Component: ProfessorDashboardPage },

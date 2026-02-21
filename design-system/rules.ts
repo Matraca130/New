@@ -6,8 +6,8 @@
  * Referencia para desarrolladores — no contiene logica,
  * solo documentacion ejecutable de convenciones visuales.
  *
- * Standalone:  import { designRules } from '@/app/design-system/rules';
- * Barrel:      import { designRules } from '@/app/design-system';
+ * Standalone:  import { designRules } from '@/design-system/rules';
+ * Barrel:      import { designRules } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

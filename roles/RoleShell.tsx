@@ -4,8 +4,8 @@
 // ============================================================
 import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router';
-import { useAuth } from '@/app/context/AuthContext';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
+import { useAuth } from '@/context/AuthContext';
+import { AxonLogo } from '@/shared/AxonLogo';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Menu, LogOut, ChevronDown, ChevronRight, Building2,

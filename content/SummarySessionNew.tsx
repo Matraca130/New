@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { headingStyle, components, iconClasses } from '@/app/design-system';
+import { headingStyle, components, iconClasses } from '@/design-system';
 import {
   ArrowLeft,
   ZoomIn,
@@ -36,8 +36,8 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
-import { getStudyContent } from '@/app/data/studyContent';
-import { useApp } from '@/app/context/AppContext';
+import { getStudyContent } from '@/data/studyContent';
+import { useApp } from '@/context/AppContext';
 import {
   KeywordData,
   MasteryLevel,
@@ -45,23 +45,23 @@ import {
   masteryConfig,
   findKeyword,
   getAllKeywordTerms
-} from '@/app/data/keywords';
-import { getSectionImage } from '@/app/data/sectionImages';
-import { courses, Model3D } from '@/app/data/courses';
+} from '@/data/keywords';
+import { getSectionImage } from '@/data/sectionImages';
+import { courses, Model3D } from '@/data/courses';
 // studentApi and SummaryAnnotation moved to useSummaryPersistence hook
 
 // ── Hook imports ──
-import { useSummaryTimer } from '@/app/hooks/useSummaryTimer';
-import { useKeywordMastery } from '@/app/hooks/useKeywordMastery';
-import { useTextAnnotations } from '@/app/hooks/useTextAnnotations';
-import type { TextAnnotation } from '@/app/hooks/useTextAnnotations';
-import { useSummaryPersistence } from '@/app/hooks/useSummaryPersistence';
-import { useSummaryViewer } from '@/app/hooks/useSummaryViewer';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
+import { useSummaryTimer } from '@/hooks/useSummaryTimer';
+import { useKeywordMastery } from '@/hooks/useKeywordMastery';
+import { useTextAnnotations } from '@/hooks/useTextAnnotations';
+import type { TextAnnotation } from '@/hooks/useTextAnnotations';
+import { useSummaryPersistence } from '@/hooks/useSummaryPersistence';
+import { useSummaryViewer } from '@/hooks/useSummaryViewer';
+import { useStudentDataContext } from '@/context/StudentDataContext';
 
 // ── Extracted sub-components (Ola 3) ──
-import { EditableKeyword } from '@/app/components/shared/EditableKeyword';
-import { TextAnnotationsPanel } from '@/app/components/shared/TextAnnotationsPanel';
+import { EditableKeyword } from '@/shared/EditableKeyword';
+import { TextAnnotationsPanel } from '@/shared/TextAnnotationsPanel';
 
 // ─── Summary Session (Sessao de Resumo) ──────────────────────────────────────
 

@@ -4,7 +4,7 @@
 // Uses centralized config from apiConfig.ts.
 // ============================================================
 
-import { REAL_BACKEND_URL } from '@/app/services/apiConfig';
+import { REAL_BACKEND_URL } from '@/services/apiConfig';
 
 // The real Supabase Edge Function endpoint
 const BASE_URL = REAL_BACKEND_URL;

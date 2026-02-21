@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
-import type { AIQuestion } from '@/app/data/keywords';
+import type { AIQuestion } from '@/data/keywords';
 
 // ─── AI Question Item (FAQ Style) ───────────────────────────────────────────
 //

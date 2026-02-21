@@ -11,20 +11,20 @@
 // ============================================================
 import type { RouteObject } from 'react-router';
 
-import { WelcomeView } from '@/app/components/content/WelcomeView';
-import { DashboardView } from '@/app/components/content/DashboardView';
-import { StudyHubView } from '@/app/components/content/StudyHubView';
-import { StudyView } from '@/app/components/content/StudyView';
-import { FlashcardView } from '@/app/components/content/FlashcardView';
-import { ThreeDView } from '@/app/components/content/ThreeDView';
-import { QuizView } from '@/app/components/content/QuizView';
-import { ScheduleView } from '@/app/components/content/ScheduleView';
-import { StudyOrganizerWizard } from '@/app/components/content/StudyOrganizerWizard';
-import { ReviewSessionView } from '@/app/components/content/ReviewSessionView';
-import { StudyDashboardsView } from '@/app/components/content/StudyDashboardsView';
-import { KnowledgeHeatmapView } from '@/app/components/content/KnowledgeHeatmapView';
-import { MasteryDashboardView } from '@/app/components/content/MasteryDashboardView';
-import { StudentDataPanel } from '@/app/components/content/StudentDataPanel';
+import { WelcomeView } from '@/content/WelcomeView';
+import { DashboardView } from '@/content/DashboardView';
+import { StudyHubView } from '@/content/StudyHubView';
+import { StudyView } from '@/content/StudyView';
+import { FlashcardView } from '@/content/FlashcardView';
+import { ThreeDView } from '@/content/ThreeDView';
+import { QuizView } from '@/content/QuizView';
+import { ScheduleView } from '@/content/ScheduleView';
+import { StudyOrganizerWizard } from '@/content/StudyOrganizerWizard';
+import { ReviewSessionView } from '@/content/ReviewSessionView';
+import { StudyDashboardsView } from '@/content/StudyDashboardsView';
+import { KnowledgeHeatmapView } from '@/content/KnowledgeHeatmapView';
+import { MasteryDashboardView } from '@/content/MasteryDashboardView';
+import { StudentDataPanel } from '@/content/StudentDataPanel';
 
 export const studentChildren: RouteObject[] = [
   { index: true,                    Component: WelcomeView },

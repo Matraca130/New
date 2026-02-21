@@ -59,20 +59,20 @@
 //   ```tsx
 //   // 1. Imports
 //   import React, { useState, useMemo } from 'react';
-//   import { useApp } from '@/app/context/AppContext';
-//   import { useStudentDataContext } from '@/app/context/StudentDataContext';
+//   import { useApp } from '@/context/AppContext';
+//   import { useStudentDataContext } from '@/context/StudentDataContext';
 //
 //   // 2. Shared components (STUDENT-SPECIFIC — usa estos)
-//   import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-//   import { KPICard, TrendBadge } from '@/app/components/shared/KPICard';
-//   import { CourseCard } from '@/app/components/shared/CourseCard';
-//   import { ActivityItem } from '@/app/components/shared/ActivityItem';
+//   import { AxonPageHeader } from '@/shared/AxonPageHeader';
+//   import { KPICard, TrendBadge } from '@/shared/KPICard';
+//   import { CourseCard } from '@/shared/CourseCard';
+//   import { ActivityItem } from '@/shared/ActivityItem';
 //
 //   // 3. Design system tokens (SIEMPRE importar de aqui)
-//   import { colors, components, headingStyle } from '@/app/design-system';
+//   import { colors, components, headingStyle } from '@/design-system';
 //
 //   // 4. Datos estaticos (si necesitas cursos, lecciones, etc.)
-//   import { courses } from '@/app/data/courses';
+//   import { courses } from '@/data/courses';
 //
 //   // 5. Icons (lucide-react)
 //   import { Flame, Trophy, BookOpen, Clock } from 'lucide-react';

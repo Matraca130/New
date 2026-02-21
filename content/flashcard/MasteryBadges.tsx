@@ -4,7 +4,7 @@
 // ============================================================
 
 import React from 'react';
-import type { MasteryStats } from '@/app/hooks/flashcard-types';
+import type { MasteryStats } from '@/hooks/flashcard-types';
 
 interface MasteryBadgesProps {
   stats: MasteryStats;

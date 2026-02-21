@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Section, Topic, Flashcard } from '@/app/data/courses';
+import { Section, Topic, Flashcard } from '@/data/courses';
 import clsx from 'clsx';
 import { ChevronLeft, ChevronRight, BookOpen, Layers, Play } from 'lucide-react';
-import { headingStyle, sectionColors } from '@/app/design-system';
-import { getMasteryStats } from '@/app/hooks/flashcard-types';
+import { headingStyle, sectionColors } from '@/design-system';
+import { getMasteryStats } from '@/hooks/flashcard-types';
 import { MasteryBadges } from './MasteryBadges';
 import { ProgressRing } from './ProgressRing';
 

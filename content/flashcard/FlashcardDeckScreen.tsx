@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Topic, Flashcard } from '@/app/data/courses';
+import { Topic, Flashcard } from '@/data/courses';
 import clsx from 'clsx';
 import { ChevronLeft, ChevronRight, BookOpen, Play, GraduationCap } from 'lucide-react';
-import { sectionColors } from '@/app/design-system';
-import { getMasteryStats, filterCardsByMastery, type MasteryFilter } from '@/app/hooks/flashcard-types';
+import { sectionColors } from '@/design-system';
+import { getMasteryStats, filterCardsByMastery, type MasteryFilter } from '@/hooks/flashcard-types';
 
 const SECTION_COLORS = sectionColors.multi;
 

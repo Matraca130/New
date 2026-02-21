@@ -159,7 +159,7 @@
 //     /src/app/components/roles/pages/owner/OwnerPlansPage.tsx       ← copia local
 //
 //   DEVELOPER_CONTRACT linea 42 dice:
-//     import { formatDate } from '@/app/components/shared/page-helpers';
+//     import { formatDate } from '@/shared/page-helpers';
 //   Pero NINGUNA pagina implementada lo hace. Todas redeclaran formatDate localmente.
 //
 //   RIESGO: Nuevo dev ve el patron existente → copia la version local →
@@ -289,7 +289,7 @@
 //   SEVERIDAD: 🔴 Alta (BLOQUEANTE para Phase 2)
 //   ARCHIVOS:
 //     /src/app/types/student.ts linea 5:
-//       import type { KeywordState } from '@/app/services/spacedRepetition';
+//       import type { KeywordState } from '@/services/spacedRepetition';
 //
 //   Phase 2 del plan de migracion quiere ELIMINAR spacedRepetition.ts.
 //   Pero student.ts (importado por TODOS los archivos de student) depende

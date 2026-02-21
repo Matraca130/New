@@ -23,26 +23,26 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router';
 
 // Auth (shared — rarely changes)
-import { LoginPage } from '@/app/components/auth/LoginPage';
-import { RequireAuth } from '@/app/components/auth/RequireAuth';
-import { RequireRole } from '@/app/components/auth/RequireRole';
-import { PostLoginRouter } from '@/app/components/auth/PostLoginRouter';
-import { SelectRolePage } from '@/app/components/auth/SelectRolePage';
+import { LoginPage } from './auth/LoginPage';
+import { RequireAuth } from './auth/RequireAuth';
+import { RequireRole } from './auth/RequireRole';
+import { PostLoginRouter } from './auth/PostLoginRouter';
+import { SelectRolePage } from './auth/SelectRolePage';
 
 // Role Layouts (shared — rarely changes)
-import { OwnerLayout } from '@/app/components/roles/OwnerLayout';
-import { AdminLayout } from '@/app/components/roles/AdminLayout';
-import { ProfessorLayout } from '@/app/components/roles/ProfessorLayout';
-import { StudentLayout } from '@/app/components/roles/StudentLayout';
+import { OwnerLayout } from './roles/OwnerLayout';
+import { AdminLayout } from './roles/AdminLayout';
+import { ProfessorLayout } from './roles/ProfessorLayout';
+import { StudentLayout } from './roles/StudentLayout';
 
 // Per-role children (one file per area — edit independently)
-import { studentChildren } from '@/app/routes/student-routes';
-import { ownerChildren } from '@/app/routes/owner-routes';
-import { adminChildren } from '@/app/routes/admin-routes';
-import { professorChildren } from '@/app/routes/professor-routes';
+import { studentChildren } from './routes/student-routes';
+import { ownerChildren } from './routes/owner-routes';
+import { adminChildren } from './routes/admin-routes';
+import { professorChildren } from './routes/professor-routes';
 
 // Diagnostics (no auth required)
-import { DiagnosticsPage } from '@/app/components/DiagnosticsPage';
+import { DiagnosticsPage } from './DiagnosticsPage';
 
 export const router = createBrowserRouter([
   // ── Public ─────────────────────────────────────────────

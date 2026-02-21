@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useApp } from '@/app/context/AppContext';
-import { useStudentDataContext } from '@/app/context/StudentDataContext';
-import { getForgettingCurvePoints, calculateRetention, getUrgencyLevel } from '@/app/services/spacedRepetition';
+import { useApp } from '@/context/AppContext';
+import { useStudentDataContext } from '@/context/StudentDataContext';
+import { getForgettingCurvePoints, calculateRetention, getUrgencyLevel } from '@/services/spacedRepetition';
 import { motion } from 'motion/react';
 import {
   Brain,
@@ -16,8 +16,8 @@ import {
   Settings,
 } from 'lucide-react';
 import clsx from 'clsx';
-import { AxonPageHeader } from '@/app/components/shared/AxonPageHeader';
-import { headingStyle, components, colors } from '@/app/design-system';
+import { AxonPageHeader } from '@/shared/AxonPageHeader';
+import { headingStyle, components, colors } from '@/design-system';
 
 // Subject data
 interface SubjectCard {

@@ -4,8 +4,8 @@
  *
  * Identidad de marca: nombre, tagline, logo (tamanhos y temas).
  *
- * Standalone:  import { brand, LogoSize, LogoTheme } from '@/app/design-system/brand';
- * Barrel:      import { brand } from '@/app/design-system';
+ * Standalone:  import { brand, LogoSize, LogoTheme } from '@/design-system/brand';
+ * Barrel:      import { brand } from '@/design-system';
  */
 
 // ─────────────────────────────────────────────

@@ -7,7 +7,7 @@
 //   Refresh:  refreshInstitution (after update)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   api.updateInstitution(instId, data)
 //   api.checkSlugAvailability(slug)
 //   api.deleteInstitution(instId)       — danger zone

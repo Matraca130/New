@@ -16,7 +16,7 @@ import {
   getStoredMemberships,
   clearAuthData,
   AuthApiError,
-} from '@/app/services/authApi';
+} from '@/services/authApi';
 
 // ── Types ─────────────────────────────────────────────────
 

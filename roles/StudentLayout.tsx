@@ -22,16 +22,16 @@
 
 import React from 'react';
 import { Outlet, useLocation } from 'react-router';
-import { AppProvider } from '@/app/context/AppContext';
-import { StudentDataProvider } from '@/app/context/StudentDataContext';
-import { useApp } from '@/app/context/AppContext';
-import { Sidebar } from '@/app/components/layout/Sidebar';
-import { TopicSidebar } from '@/app/components/layout/TopicSidebar';
-import { CourseSwitcher } from '@/app/components/layout/CourseSwitcher';
-import { AxonLogo } from '@/app/components/shared/AxonLogo';
-import { UserProfileDropdown } from '@/app/components/layout/UserProfileDropdown';
-import { AxonAIAssistant } from '@/app/components/ai/AxonAIAssistant';
-import { components, animation } from '@/app/design-system';
+import { AppProvider } from '@/context/AppContext';
+import { StudentDataProvider } from '@/context/StudentDataContext';
+import { useApp } from '@/context/AppContext';
+import { Sidebar } from '@/layout/Sidebar';
+import { TopicSidebar } from '@/layout/TopicSidebar';
+import { CourseSwitcher } from '@/layout/CourseSwitcher';
+import { AxonLogo } from '@/shared/AxonLogo';
+import { UserProfileDropdown } from '@/layout/UserProfileDropdown';
+import { AxonAIAssistant } from '@/ai/AxonAIAssistant';
+import { components, animation } from '@/design-system';
 import { motion } from 'motion/react';
 import { Menu } from 'lucide-react';
 

@@ -7,7 +7,7 @@
 //   Refresh:  refreshCourses (after course CRUD)
 //   Wrappers: (none)
 //
-// API DIRECT (import * as api from '@/app/services/platformApi'):
+// API DIRECT (import * as api from '@/services/platformApi'):
 //   — Courses:   api.getCourses, api.createCourse, api.updateCourse, api.deleteCourse
 //   — Semesters: api.getSemesters, api.createSemester, api.updateSemester, api.deleteSemester
 //   — Sections:  api.getSections, api.createSection, api.updateSection, api.deleteSection

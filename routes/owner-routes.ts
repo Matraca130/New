@@ -11,14 +11,14 @@
 // ============================================================
 import type { RouteObject } from 'react-router';
 
-import { OwnerDashboardPage } from '@/app/components/roles/pages/owner/OwnerDashboardPage';
-import { OwnerInstitutionPage } from '@/app/components/roles/pages/owner/OwnerInstitutionPage';
-import { OwnerMembersPage } from '@/app/components/roles/pages/owner/OwnerMembersPage';
-import { OwnerPlansPage } from '@/app/components/roles/pages/owner/OwnerPlansPage';
-import { OwnerSubscriptionsPage } from '@/app/components/roles/pages/owner/OwnerSubscriptionsPage';
-import { OwnerAccessRulesPage } from '@/app/components/roles/pages/owner/OwnerAccessRulesPage';
-import { OwnerReportsPage } from '@/app/components/roles/pages/owner/OwnerReportsPage';
-import { OwnerSettingsPage } from '@/app/components/roles/pages/owner/OwnerSettingsPage';
+import { OwnerDashboardPage } from '@/roles/pages/owner/OwnerDashboardPage';
+import { OwnerInstitutionPage } from '@/roles/pages/owner/OwnerInstitutionPage';
+import { OwnerMembersPage } from '@/roles/pages/owner/OwnerMembersPage';
+import { OwnerPlansPage } from '@/roles/pages/owner/OwnerPlansPage';
+import { OwnerSubscriptionsPage } from '@/roles/pages/owner/OwnerSubscriptionsPage';
+import { OwnerAccessRulesPage } from '@/roles/pages/owner/OwnerAccessRulesPage';
+import { OwnerReportsPage } from '@/roles/pages/owner/OwnerReportsPage';
+import { OwnerSettingsPage } from '@/roles/pages/owner/OwnerSettingsPage';
 
 export const ownerChildren: RouteObject[] = [
   { index: true,           Component: OwnerDashboardPage },

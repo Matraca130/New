@@ -2,7 +2,7 @@
 // Axon — Professor: Settings
 // PARALLEL-SAFE: This file is independent. Edit freely.
 // Backend routes: (TBD)
-// API: import * as api from '@/app/services/platformApi'
+// API: import * as api from '@/services/platformApi'
 // ============================================================
 import React from 'react';
 import { PlaceholderPage } from '../../PlaceholderPage';
