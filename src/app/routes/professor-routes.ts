@@ -19,6 +19,7 @@ import { ProfessorQuizzesPage } from '@/app/components/roles/pages/professor/Pro
 import { ProfessorStudentsPage } from '@/app/components/roles/pages/professor/ProfessorStudentsPage';
 import { ProfessorAIPage } from '@/app/components/roles/pages/professor/ProfessorAIPage';
 import { ProfessorSettingsPage } from '@/app/components/roles/pages/professor/ProfessorSettingsPage';
+import { ProfessorModels3DPage } from '@/app/components/content/ProfessorModels3DPage';
 
 export const professorChildren: RouteObject[] = [
   { index: true,        Component: ProfessorDashboardPage },
@@ -26,6 +27,7 @@ export const professorChildren: RouteObject[] = [
   { path: 'curriculum', Component: ProfessorCurriculumPage },
   { path: 'flashcards', Component: ProfessorFlashcardsPage },
   { path: 'quizzes',    Component: ProfessorQuizzesPage },
+  { path: 'models-3d',  Component: ProfessorModels3DPage },
   { path: 'students',   Component: ProfessorStudentsPage },
   { path: 'ai',         Component: ProfessorAIPage },
   { path: 'settings',   Component: ProfessorSettingsPage },
