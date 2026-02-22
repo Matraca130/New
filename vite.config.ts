@@ -11,15 +11,15 @@ export default defineConfig({
     tailwindcss(),
   ],
   resolve: {
-    alias: {
-      // Alias @ to the root directory
-      '@': path.resolve(__dirname, './'),
-      // Alias @/app to the root too, so Figma Make imports
-      // like '@/app/services/apiConfig' resolve correctly
-      '@/app': path.resolve(__dirname, './'),
+    alias: [
+      // Order matters! Longer prefixes must come first.
+      // @/app → root, so Figma Make imports like '@/app/services/X' resolve to './services/X'
+      { find: '@/app', replacement: path.resolve(__dirname, './') },
+      // @ → root, so existing imports like '@/services/X' also resolve to './services/X'
+      { find: '@', replacement: path.resolve(__dirname, './') },
       // Force all three imports to resolve to the same physical module
-      'three': path.resolve(__dirname, 'node_modules/three'),
-    },
+      { find: 'three', replacement: path.resolve(__dirname, 'node_modules/three') },
+    ],
     dedupe: ['three'],
   },
   optimizeDeps: {
