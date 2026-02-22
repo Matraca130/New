@@ -6,7 +6,7 @@ import {
   BookOpen, 
   Settings, 
   Users,
-   Box,
+  Home,
   Layers,
   type LucideIcon,
 } from 'lucide-react';
