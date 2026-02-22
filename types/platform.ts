@@ -11,7 +11,7 @@ export type ISODate = string;
 export type MembershipRole = 'owner' | 'admin' | 'professor' | 'student';
 export type SummaryStatus = 'draft' | 'published' | 'rejected';
 
-// ── Institutions ──────────────────────────────────────────
+// ── Institutions ───────────────────────────────────────
 
 export interface Institution {
   id: UUID;
@@ -25,7 +25,7 @@ export interface Institution {
   updated_at: ISODate;
 }
 
-// ── Content Hierarchy ───────────────────────────────────────
+// ── Content Hierarchy ──────────────────────────────────
 
 export interface Course {
   id: UUID;
@@ -66,7 +66,7 @@ export interface Topic {
   created_at?: ISODate;
 }
 
-// ── Summary & sub-entities ──────────────────────────────────
+// ── Summary & sub-entities ─────────────────────────────
 
 export interface Summary {
   id: UUID;
@@ -95,7 +95,7 @@ export interface Keyword {
   updated_at: ISODate;
 }
 
-// ── Chunks ────────────────────────────────────────────────
+// ── Chunks ───────────────────────────────────────────
 
 export interface Chunk {
   id: UUID;
@@ -107,7 +107,7 @@ export interface Chunk {
   updated_at: string;
 }
 
-// ── Subtopics ─────────────────────────────────────────────
+// ── Subtopics ────────────────────────────────────────
 
 export interface Subtopic {
   id: UUID;
@@ -119,7 +119,7 @@ export interface Subtopic {
   updated_at: string;
 }
 
-// ── Keyword Connections ─────────────────────────────────────
+// ── Keyword Connections ────────────────────────────────
 
 export interface KeywordConnection {
   id: UUID;
@@ -129,7 +129,7 @@ export interface KeywordConnection {
   created_at: string;
 }
 
-// ── Professor Notes on Keywords ─────────────────────────────
+// ── Professor Notes on Keywords ────────────────────────
 
 export interface KwProfNote {
   id: UUID;
@@ -140,7 +140,7 @@ export interface KwProfNote {
   updated_at: string;
 }
 
-// ── Flashcards ────────────────────────────────────────────
+// ── Flashcards ───────────────────────────────────────
 
 export interface FlashcardCard {
   id: UUID;
@@ -154,7 +154,7 @@ export interface FlashcardCard {
   updated_at: string;
 }
 
-// ── Quiz Questions ────────────────────────────────────────
+// ── Quiz Questions ───────────────────────────────────
 
 export interface QuizQuestion {
   id: UUID;
@@ -172,7 +172,7 @@ export interface QuizQuestion {
   updated_at: string;
 }
 
-// ── Videos ────────────────────────────────────────────────
+// ── Videos ───────────────────────────────────────────
 
 export interface Video {
   id: UUID;
@@ -187,7 +187,7 @@ export interface Video {
   updated_at: string;
 }
 
-// ── Student Notes on Keywords ───────────────────────────────
+// ── Student Notes on Keywords ──────────────────────────
 
 export interface KwStudentNote {
   id: UUID;
@@ -198,7 +198,7 @@ export interface KwStudentNote {
   updated_at: string;
 }
 
-// ── Text Annotations ────────────────────────────────────────
+// ── Text Annotations ───────────────────────────────────
 
 export interface PlatformTextAnnotation {
   id: UUID;
@@ -212,7 +212,7 @@ export interface PlatformTextAnnotation {
   updated_at: string;
 }
 
-// ── Video Notes ───────────────────────────────────────────
+// ── Video Notes ────────────────────────────────────────
 
 export interface VideoNote {
   id: UUID;
@@ -224,7 +224,7 @@ export interface VideoNote {
   updated_at: string;
 }
 
-// ── Reading State ─────────────────────────────────────────
+// ── Reading State ──────────────────────────────────────
 
 export interface ReadingState {
   id?: UUID;
@@ -234,61 +234,4 @@ export interface ReadingState {
   time_spent_seconds?: number;
   completed?: boolean;
   last_read_at?: string;
-}
-
-// ── Legacy exports (backward compat) ────────────────────────
-// Some old files import these types:
-export type ApiResponse<T> = T;
-export interface ContentHierarchy {
-  courses: Course[];
-}
-export interface InstitutionDashboardStats {
-  total_members: number;
-  total_courses: number;
-  total_summaries: number;
-}
-export interface MemberListItem {
-  id: UUID;
-  user_id: UUID;
-  institution_id: UUID;
-  role: MembershipRole;
-  is_active: boolean;
-}
-export interface CreateMemberPayload {
-  institution_id: UUID;
-  email: string;
-  role: MembershipRole;
-}
-export interface PlatformPlan {
-  id: UUID;
-  name: string;
-  is_active: boolean;
-}
-export interface InstitutionPlan {
-  id: UUID;
-  institution_id: UUID;
-  name: string;
-  is_active: boolean;
-  is_default?: boolean;
-}
-export interface InstitutionSubscription {
-  id: UUID;
-  institution_id: UUID;
-  plan_id: UUID;
-  status: string;
-}
-export interface AdminScope {
-  id: UUID;
-  membership_id: UUID;
-  scope_type: string;
-  scope_id?: UUID;
-}
-export interface PlanAccessRule {
-  id: UUID;
-  plan_id: UUID;
-  scope_type: string;
-  scope_id: UUID;
-}
-export interface AccessCheckResult {
-  has_access: boolean;
 }

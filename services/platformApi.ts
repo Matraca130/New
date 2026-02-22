@@ -1,45 +1,94 @@
 // ============================================================
-// Axon — Platform API Service (Frontend -> Real Backend)
-// Covers: institutions, members, plans, subscriptions, admin
-// scopes, access rules, content hierarchy, flashcards, reviews.
+// Axon — Platform API Service v4.4 (FOCUSED)
 //
-// Uses centralized config from apiConfig.ts
+// SCOPE: Professor summary editor + Student summary interaction
+//
+// Includes ONLY:
+//   - Health, content-tree
+//   - Institutions (basic), memberships
+//   - Content hierarchy: courses, semesters, sections, topics
+//   - Summary + sub-entities: chunks, keywords, subtopics,
+//     keyword-connections, kw-prof-notes, flashcards,
+//     quiz-questions, videos
+//   - Student interaction: kw-student-notes, text-annotations,
+//     video-notes, reading-states
+//   - Reorder
+//
+// ALL routes use the REAL backend (make-server-6569f786).
+// Route pattern: flat paths + query params for filtering.
+// Response: { data: ... } envelope, unwrapped by realRequest.
 // ============================================================
 
-import { realRequest, REAL_BACKEND_URL, getRealToken, ApiError } from '@/services/apiConfig';
+import { realRequest, ApiError } from '@/services/apiConfig';
 import type {
   UUID,
-  ApiResponse,
   Institution,
-  InstitutionDashboardStats,
-  MemberListItem,
-  CreateMemberPayload,
-  PlatformPlan,
-  InstitutionPlan,
-  InstitutionSubscription,
-  AdminScope,
-  PlanAccessRule,
-  AccessCheckResult,
   Course,
   Semester,
   Section,
   Topic,
   Summary,
-  SummaryStatus,
   Keyword,
-  ContentHierarchy,
-  MembershipRole,
-  ISODate,
+  Chunk,
+  Subtopic,
+  KeywordConnection,
+  KwProfNote,
+  FlashcardCard,
+  QuizQuestion,
+  Video,
+  KwStudentNote,
+  PlatformTextAnnotation,
+  VideoNote,
+  ReadingState,
 } from '@/types/platform';
 
-// Re-export error class from config for backward compatibility
+// Re-export types for consumers
+export type {
+  Chunk, Subtopic, KeywordConnection, KwProfNote,
+  FlashcardCard, QuizQuestion, Video, KwStudentNote,
+  PlatformTextAnnotation as TextAnnotation, VideoNote, ReadingState,
+} from '@/types/platform';
+
+// Re-export error class
 export { ApiError as PlatformApiError } from '@/services/apiConfig';
 
-// Use centralized request helper
+// Shorthand
 const request = realRequest;
 
+// ── Pagination types ────────────────────────────────────────
+
+export interface PaginatedResult<T> {
+  items: T[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+function paginationQs(opts?: { limit?: number; offset?: number }): string {
+  const params = new URLSearchParams();
+  if (opts?.limit) params.set('limit', String(opts.limit));
+  if (opts?.offset) params.set('offset', String(opts.offset));
+  return params.toString() ? `&${params}` : '';
+}
+
 // ============================================================
-// INSTITUTIONS
+// HEALTH
+// ============================================================
+
+export async function healthCheck(): Promise<any> {
+  return request('/health');
+}
+
+// ============================================================
+// CONTENT TREE (full hierarchy in one call)
+// ============================================================
+
+export async function getContentTree(institutionId: UUID): Promise<any> {
+  return request(`/content-tree?institution_id=${institutionId}`);
+}
+
+// ============================================================
+// INSTITUTIONS — needed for context loading
 // ============================================================
 
 export async function getInstitutions(): Promise<Institution[]> {
@@ -50,300 +99,60 @@ export async function getInstitution(instId: UUID): Promise<Institution> {
   return request<Institution>(`/institutions/${instId}`);
 }
 
-export async function getInstitutionBySlug(slug: string): Promise<Institution> {
-  return request<Institution>(`/institutions/by-slug/${slug}`);
-}
-
-export async function checkSlugAvailability(slug: string): Promise<{ available: boolean; suggestion?: string }> {
-  return request(`/institutions/check-slug/${slug}`);
-}
-
-export async function getInstitutionDashboardStats(instId: UUID): Promise<InstitutionDashboardStats> {
-  return request<InstitutionDashboardStats>(`/institutions/${instId}/dashboard-stats`);
-}
-
-export async function createInstitution(data: {
-  name: string;
-  slug: string;
-  logo_url?: string;
-  settings?: Record<string, any>;
-}): Promise<Institution> {
-  return request<Institution>('/institutions', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function updateInstitution(instId: UUID, data: Partial<Institution>): Promise<Institution> {
-  return request<Institution>(`/institutions/${instId}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function deleteInstitution(instId: UUID): Promise<{ id: UUID; is_active: boolean }> {
-  return request(`/institutions/${instId}`, { method: 'DELETE' });
+export async function getInstitutionDashboardStats(instId: UUID): Promise<any> {
+  return request(`/institutions/${instId}/dashboard-stats`);
 }
 
 // ============================================================
-// MEMBERS
+// MEMBERSHIPS — needed by authApi after login
 // ============================================================
 
-export async function getMembers(institutionId: UUID): Promise<MemberListItem[]> {
-  return request<MemberListItem[]>(`/members/${institutionId}`);
-}
-
-export async function createMember(data: CreateMemberPayload): Promise<MemberListItem> {
-  return request<MemberListItem>('/members', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function changeMemberRole(memberId: UUID, role: MembershipRole): Promise<MemberListItem> {
-  return request<MemberListItem>(`/members/${memberId}/role`, {
-    method: 'PATCH',
-    body: JSON.stringify({ role }),
-  });
-}
-
-export async function changeMemberPlan(memberId: UUID, institutionPlanId: UUID | null): Promise<MemberListItem> {
-  return request<MemberListItem>(`/members/${memberId}/plan`, {
-    method: 'PATCH',
-    body: JSON.stringify({ institution_plan_id: institutionPlanId }),
-  });
-}
-
-export async function toggleMemberActive(memberId: UUID, isActive: boolean): Promise<MemberListItem> {
-  return request<MemberListItem>(`/members/${memberId}/toggle-active`, {
-    method: 'PATCH',
-    body: JSON.stringify({ is_active: isActive }),
-  });
-}
-
-export async function deleteMember(memberId: UUID): Promise<{ id: UUID; deleted: boolean }> {
-  return request(`/members/${memberId}`, { method: 'DELETE' });
+export async function getMemberships(): Promise<any[]> {
+  return request<any[]>('/memberships');
 }
 
 // ============================================================
-// PLATFORM PLANS (Axon sells to institutions)
+// MEMBERS — needed by PlatformDataContext
 // ============================================================
 
-export async function getPlatformPlans(includeInactive = false): Promise<PlatformPlan[]> {
-  const qs = includeInactive ? '?include_inactive=true' : '';
-  return request<PlatformPlan[]>(`/platform-plans${qs}`);
-}
-
-export async function getPlatformPlan(id: UUID): Promise<PlatformPlan> {
-  return request<PlatformPlan>(`/platform-plans/${id}`);
-}
-
-export async function createPlatformPlan(data: Partial<PlatformPlan>): Promise<PlatformPlan> {
-  return request<PlatformPlan>('/platform-plans', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function updatePlatformPlan(id: UUID, data: Partial<PlatformPlan>): Promise<PlatformPlan> {
-  return request<PlatformPlan>(`/platform-plans/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function deletePlatformPlan(id: UUID): Promise<{ id: UUID; is_active: boolean }> {
-  return request(`/platform-plans/${id}`, { method: 'DELETE' });
+export async function getMembers(institutionId: UUID): Promise<any[]> {
+  return request<any[]>(`/members/${institutionId}`);
 }
 
 // ============================================================
-// INSTITUTION PLANS (institutions sell to students)
+// INSTITUTION PLANS — needed by PlatformDataContext
 // ============================================================
 
-export async function getInstitutionPlans(instId: UUID, includeInactive = false): Promise<InstitutionPlan[]> {
-  const qs = includeInactive ? '?include_inactive=true' : '';
-  return request<InstitutionPlan[]>(`/institutions/${instId}/plans${qs}`);
-}
-
-export async function getInstitutionPlan(id: UUID): Promise<InstitutionPlan> {
-  return request<InstitutionPlan>(`/institution-plans/${id}`);
-}
-
-export async function createInstitutionPlan(data: {
-  institution_id: UUID;
-  name: string;
-  description?: string;
-  price_cents?: number;
-  billing_cycle?: string;
-  is_default?: boolean;
-}): Promise<InstitutionPlan> {
-  return request<InstitutionPlan>('/institution-plans', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function updateInstitutionPlan(id: UUID, data: Partial<InstitutionPlan>): Promise<InstitutionPlan> {
-  return request<InstitutionPlan>(`/institution-plans/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function deleteInstitutionPlan(id: UUID): Promise<{ id: UUID; is_active: boolean }> {
-  return request(`/institution-plans/${id}`, { method: 'DELETE' });
-}
-
-export async function setDefaultInstitutionPlan(id: UUID): Promise<InstitutionPlan> {
-  return request<InstitutionPlan>(`/institution-plans/${id}/set-default`, {
-    method: 'PATCH',
-  });
+export async function getInstitutionPlans(instId: UUID, opts?: { include_inactive?: boolean }): Promise<any> {
+  const qs = opts?.include_inactive ? '?include_inactive=true' : '';
+  return request(`/institutions/${instId}/plans${qs}`);
 }
 
 // ============================================================
-// SUBSCRIPTIONS
+// SUBSCRIPTION — needed by PlatformDataContext
 // ============================================================
 
-export async function getInstitutionSubscription(instId: UUID): Promise<InstitutionSubscription | null> {
-  return request<InstitutionSubscription | null>(`/institutions/${instId}/subscription`);
-}
-
-export async function getSubscription(id: UUID): Promise<InstitutionSubscription> {
-  return request<InstitutionSubscription>(`/institution-subscriptions/${id}`);
-}
-
-export async function createSubscription(data: {
-  institution_id: UUID;
-  plan_id: UUID;
-  status?: string;
-  current_period_start?: string;
-  current_period_end?: string;
-}): Promise<InstitutionSubscription> {
-  return request<InstitutionSubscription>('/institution-subscriptions', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function updateSubscription(id: UUID, data: Partial<InstitutionSubscription>): Promise<InstitutionSubscription> {
-  return request<InstitutionSubscription>(`/institution-subscriptions/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function cancelSubscription(id: UUID): Promise<{ id: UUID; status: string }> {
-  return request(`/institution-subscriptions/${id}`, { method: 'DELETE' });
+export async function getInstitutionSubscription(instId: UUID): Promise<any> {
+  return request(`/institutions/${instId}/subscription`);
 }
 
 // ============================================================
-// ADMIN SCOPES
+// COURSES — paginated (requires institution_id)
 // ============================================================
 
-export async function getAdminScopes(membershipId: UUID): Promise<AdminScope[]> {
-  return request<AdminScope[]>(`/admin-scopes/membership/${membershipId}`);
+export async function getCourses(institutionId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Course>> {
+  return request<PaginatedResult<Course>>(`/courses?institution_id=${institutionId}${paginationQs(opts)}`);
 }
 
-export async function getAdminScope(id: UUID): Promise<AdminScope> {
-  return request<AdminScope>(`/admin-scopes/${id}`);
-}
-
-export async function getAllAdminScopes(): Promise<AdminScope[]> {
-  return request<AdminScope[]>('/admin-scopes');
-}
-
-export async function getInstitutionAdminScopes(instId: UUID): Promise<AdminScope[]> {
-  return request<AdminScope[]>(`/institutions/${instId}/admin-scopes`);
-}
-
-export async function createAdminScope(data: {
-  membership_id: UUID;
-  scope_type: 'full' | 'course' | 'semester' | 'section';
-  scope_id?: UUID;
-}): Promise<AdminScope> {
-  return request<AdminScope>('/admin-scopes', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function deleteAdminScope(id: UUID): Promise<{ id: UUID; deleted: boolean }> {
-  return request(`/admin-scopes/${id}`, { method: 'DELETE' });
-}
-
-export async function bulkReplaceAdminScopes(
-  membershipId: UUID,
-  scopes: Array<{ scope_type: string; scope_id?: UUID }>
-): Promise<AdminScope[]> {
-  return request<AdminScope[]>(`/admin-scopes/membership/${membershipId}`, {
-    method: 'PUT',
-    body: JSON.stringify({ scopes }),
-  });
-}
-
-// ============================================================
-// ACCESS RULES
-// ============================================================
-
-export async function getPlanAccessRules(planId: UUID): Promise<PlanAccessRule[]> {
-  return request<PlanAccessRule[]>(`/institution-plans/${planId}/access-rules`);
-}
-
-export async function createAccessRules(data: {
-  plan_id: UUID;
-  rules?: Array<{ scope_type: string; scope_id: UUID }>;
-  scope_type?: string;
-  scope_id?: UUID;
-}): Promise<PlanAccessRule[]> {
-  return request<PlanAccessRule[]>('/plan-access-rules', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export async function deleteAccessRule(id: UUID): Promise<{ id: UUID; deleted: boolean }> {
-  return request(`/plan-access-rules/${id}`, { method: 'DELETE' });
-}
-
-export async function bulkReplaceAccessRules(
-  planId: UUID,
-  rules: Array<{ scope_type: string; scope_id: UUID }>
-): Promise<PlanAccessRule[]> {
-  return request<PlanAccessRule[]>(`/institution-plans/${planId}/access-rules`, {
-    method: 'PUT',
-    body: JSON.stringify({ rules }),
-  });
-}
-
-export async function checkAccess(
-  userId: UUID,
-  scopeType: string,
-  scopeId: UUID,
-  institutionId: UUID
-): Promise<AccessCheckResult> {
-  return request<AccessCheckResult>(
-    `/check-access/${userId}/${scopeType}/${scopeId}?institution_id=${institutionId}`
-  );
-}
-
-// ============================================================
-// CONTENT — Courses (KV-based on real backend)
-// ============================================================
-
-export async function getContentHierarchy(): Promise<ContentHierarchy> {
-  return request<ContentHierarchy>('/content/hierarchy');
-}
-
-export async function getCourses(institutionId?: UUID): Promise<Course[]> {
-  const qs = institutionId ? `?institution_id=${institutionId}` : '';
-  return request<Course[]>(`/courses${qs}`);
+export async function getCourse(courseId: UUID): Promise<Course> {
+  return request<Course>(`/courses/${courseId}`);
 }
 
 export async function createCourse(data: {
-  name: string;
   institution_id: UUID;
+  name: string;
   description?: string;
-  color?: string;
+  order_index?: number;
 }): Promise<Course> {
   return request<Course>('/courses', {
     method: 'POST',
@@ -363,15 +172,19 @@ export async function deleteCourse(courseId: UUID): Promise<void> {
 }
 
 // ============================================================
-// CONTENT — Semesters
+// SEMESTERS — paginated (requires course_id)
 // ============================================================
 
-export async function getSemesters(courseId: UUID): Promise<Semester[]> {
-  return request<Semester[]>(`/courses/${courseId}/semesters`);
+export async function getSemesters(courseId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Semester>> {
+  return request<PaginatedResult<Semester>>(`/semesters?course_id=${courseId}${paginationQs(opts)}`);
 }
 
-export async function createSemester(courseId: UUID, data: { name: string; order_index?: number }): Promise<Semester> {
-  return request<Semester>(`/courses/${courseId}/semesters`, {
+export async function getSemester(semesterId: UUID): Promise<Semester> {
+  return request<Semester>(`/semesters/${semesterId}`);
+}
+
+export async function createSemester(data: { course_id: UUID; name: string; order_index?: number }): Promise<Semester> {
+  return request<Semester>('/semesters', {
     method: 'POST',
     body: JSON.stringify(data),
   });
@@ -389,15 +202,19 @@ export async function deleteSemester(semesterId: UUID): Promise<void> {
 }
 
 // ============================================================
-// CONTENT — Sections
+// SECTIONS — paginated (requires semester_id)
 // ============================================================
 
-export async function getSections(semesterId: UUID): Promise<Section[]> {
-  return request<Section[]>(`/semesters/${semesterId}/sections`);
+export async function getSections(semesterId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Section>> {
+  return request<PaginatedResult<Section>>(`/sections?semester_id=${semesterId}${paginationQs(opts)}`);
 }
 
-export async function createSection(semesterId: UUID, data: { name: string; order_index?: number }): Promise<Section> {
-  return request<Section>(`/semesters/${semesterId}/sections`, {
+export async function getSection(sectionId: UUID): Promise<Section> {
+  return request<Section>(`/sections/${sectionId}`);
+}
+
+export async function createSection(data: { semester_id: UUID; name: string; order_index?: number }): Promise<Section> {
+  return request<Section>('/sections', {
     method: 'POST',
     body: JSON.stringify(data),
   });
@@ -415,15 +232,19 @@ export async function deleteSection(sectionId: UUID): Promise<void> {
 }
 
 // ============================================================
-// CONTENT — Topics
+// TOPICS — paginated (requires section_id)
 // ============================================================
 
-export async function getTopics(sectionId: UUID): Promise<Topic[]> {
-  return request<Topic[]>(`/sections/${sectionId}/topics`);
+export async function getTopics(sectionId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Topic>> {
+  return request<PaginatedResult<Topic>>(`/topics?section_id=${sectionId}${paginationQs(opts)}`);
 }
 
-export async function createTopic(sectionId: UUID, data: { name: string; order_index?: number }): Promise<Topic> {
-  return request<Topic>(`/sections/${sectionId}/topics`, {
+export async function getTopic(topicId: UUID): Promise<Topic> {
+  return request<Topic>(`/topics/${topicId}`);
+}
+
+export async function createTopic(data: { section_id: UUID; name: string; order_index?: number }): Promise<Topic> {
+  return request<Topic>('/topics', {
     method: 'POST',
     body: JSON.stringify(data),
   });
@@ -441,20 +262,33 @@ export async function deleteTopic(topicId: UUID): Promise<void> {
 }
 
 // ============================================================
-// CONTENT — Summaries (content summaries, professor-authored)
+// SUMMARIES — paginated, SACRED soft-delete (requires topic_id)
 // ============================================================
 
-export async function getTopicSummaries(topicId: UUID): Promise<Summary[]> {
-  return request<Summary[]>(`/topics/${topicId}/summaries`);
+export async function getSummaries(topicId: UUID, opts?: { limit?: number; offset?: number; include_deleted?: boolean }): Promise<PaginatedResult<Summary>> {
+  let qs = `?topic_id=${topicId}`;
+  if (opts?.include_deleted) qs += '&include_deleted=true';
+  qs += paginationQs(opts);
+  return request<PaginatedResult<Summary>>(`/summaries${qs}`);
 }
 
-export async function createSummary(topicId: UUID, data: {
-  institution_id?: UUID;
-  title?: string;
-  content_markdown: string;
-  status?: SummaryStatus;
+export const getTopicSummaries = async (topicId: UUID): Promise<Summary[]> => {
+  const result = await getSummaries(topicId);
+  return result.items || [];
+};
+
+export async function getSummary(summaryId: UUID): Promise<Summary> {
+  return request<Summary>(`/summaries/${summaryId}`);
+}
+
+export async function createSummary(data: {
+  topic_id: UUID;
+  title: string;
+  content_markdown?: string;
+  status?: string;
+  order_index?: number;
 }): Promise<Summary> {
-  return request<Summary>(`/topics/${topicId}/summaries`, {
+  return request<Summary>('/summaries', {
     method: 'POST',
     body: JSON.stringify(data),
   });
@@ -471,18 +305,59 @@ export async function deleteSummary(summaryId: UUID): Promise<void> {
   return request(`/summaries/${summaryId}`, { method: 'DELETE' });
 }
 
+export async function restoreSummary(summaryId: UUID): Promise<Summary> {
+  return request<Summary>(`/summaries/${summaryId}/restore`, { method: 'PUT' });
+}
+
 // ============================================================
-// CONTENT — Keywords
+// CHUNKS — paginated, hard delete (requires summary_id)
 // ============================================================
 
-export async function getKeywords(institutionId?: UUID): Promise<Keyword[]> {
-  const qs = institutionId ? `?institution_id=${institutionId}` : '';
-  return request<Keyword[]>(`/keywords${qs}`);
+export async function getChunks(summaryId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Chunk>> {
+  return request<PaginatedResult<Chunk>>(`/chunks?summary_id=${summaryId}${paginationQs(opts)}`);
+}
+
+export async function createChunk(data: {
+  summary_id: UUID;
+  content: string;
+  order_index?: number;
+  metadata?: Record<string, any>;
+}): Promise<Chunk> {
+  return request<Chunk>('/chunks', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateChunk(chunkId: UUID, data: Partial<Chunk>): Promise<Chunk> {
+  return request<Chunk>(`/chunks/${chunkId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteChunk(chunkId: UUID): Promise<void> {
+  return request(`/chunks/${chunkId}`, { method: 'DELETE' });
+}
+
+// ============================================================
+// KEYWORDS — paginated, SACRED soft-delete (requires summary_id)
+// ============================================================
+
+export async function getKeywords(summaryId: UUID, opts?: { limit?: number; offset?: number; include_deleted?: boolean }): Promise<PaginatedResult<Keyword>> {
+  let qs = `?summary_id=${summaryId}`;
+  if (opts?.include_deleted) qs += '&include_deleted=true';
+  qs += paginationQs(opts);
+  return request<PaginatedResult<Keyword>>(`/keywords${qs}`);
+}
+
+export async function getKeyword(keywordId: UUID): Promise<Keyword> {
+  return request<Keyword>(`/keywords/${keywordId}`);
 }
 
 export async function createKeyword(data: {
-  institution_id: UUID;
-  term: string;
+  summary_id: UUID;
+  name: string;
   definition?: string;
   priority?: number;
 }): Promise<Keyword> {
@@ -503,166 +378,100 @@ export async function deleteKeyword(keywordId: UUID): Promise<void> {
   return request(`/keywords/${keywordId}`, { method: 'DELETE' });
 }
 
-// ============================================================
-// HEALTH CHECK
-// ============================================================
-
-export async function healthCheck(): Promise<{
-  status: string;
-  version: string;
-  migration_status: string;
-  sql_routes: string[];
-  kv_routes: string[];
-}> {
-  return request('/health');
+export async function restoreKeyword(keywordId: UUID): Promise<Keyword> {
+  return request<Keyword>(`/keywords/${keywordId}/restore`, { method: 'PUT' });
 }
 
 // ============================================================
-// ADMIN — Student Management (SQL + KV hybrid)
-// NOTE: routes-admin-students.tsx must be mounted in index.ts
-// for these to work. Verify deployment status.
+// SUBTOPICS — paginated, SACRED soft-delete (requires keyword_id)
 // ============================================================
 
-export interface AdminStudentListItem {
-  membership_id: UUID;
-  user_id: UUID;
-  institution_id: UUID;
-  is_active: boolean;
-  joined_at: ISODate;
-  updated_at: ISODate;
-  name: string | null;
-  email: string | null;
-  avatar_url: string | null;
-  plan: { id: UUID; name: string; is_default?: boolean } | null;
-  stats: {
-    total_study_minutes: number;
-    total_sessions: number;
-    total_cards_reviewed: number;
-    total_quizzes_completed: number;
-    current_streak: number;
-    last_study_date: string | null;
-  } | null;
-  strengths_count: number;
-  weaknesses_count: number;
+export async function getSubtopics(keywordId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Subtopic>> {
+  return request<PaginatedResult<Subtopic>>(`/subtopics?keyword_id=${keywordId}${paginationQs(opts)}`);
 }
 
-export interface AdminStudentDetail extends AdminStudentListItem {
-  role: MembershipRole;
-  stats: any;
-  course_progress: any[];
-  daily_activity: any[];
-  learning_profile: any | null;
-}
-
-export interface PaginatedResponse<T> {
-  data: T;
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    total_pages: number;
-  };
-}
-
-export async function getAdminStudents(
-  institutionId: UUID,
-  options?: { page?: number; limit?: number; sort?: string; order?: 'asc' | 'desc' }
-): Promise<PaginatedResponse<AdminStudentListItem[]>> {
-  const params = new URLSearchParams();
-  if (options?.page) params.set('page', String(options.page));
-  if (options?.limit) params.set('limit', String(options.limit));
-  if (options?.sort) params.set('sort', options.sort);
-  if (options?.order) params.set('order', options.order);
-  const qs = params.toString() ? `?${params}` : '';
-
-  // This endpoint returns { success, data, pagination } — we need to handle it specially
-  const url = `${REAL_BACKEND_URL}/admin/students/${institutionId}${qs}`;
-  const token = getRealToken();
-  const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-  });
-  const body = await res.json();
-  if (!res.ok || !body.success) {
-    throw new ApiError(
-      body?.error?.message || `API error ${res.status}`,
-      body?.error?.code || 'UNKNOWN',
-      res.status
-    );
-  }
-  return { data: body.data, pagination: body.pagination };
-}
-
-export async function searchAdminStudents(
-  institutionId: UUID,
-  query: string
-): Promise<AdminStudentListItem[]> {
-  return request<AdminStudentListItem[]>(
-    `/admin/students/${institutionId}/search?q=${encodeURIComponent(query)}`
-  );
-}
-
-export async function getAdminStudentDetail(
-  institutionId: UUID,
-  userId: UUID
-): Promise<AdminStudentDetail> {
-  return request<AdminStudentDetail>(`/admin/students/${institutionId}/${userId}`);
-}
-
-export async function toggleStudentStatus(
-  memberId: UUID,
-  isActive: boolean
-): Promise<any> {
-  return request(`/admin/students/${memberId}/status`, {
-    method: 'PATCH',
-    body: JSON.stringify({ is_active: isActive }),
+export async function createSubtopic(data: { keyword_id: UUID; name: string; order_index?: number }): Promise<Subtopic> {
+  return request<Subtopic>('/subtopics', {
+    method: 'POST',
+    body: JSON.stringify(data),
   });
 }
 
-export async function changeStudentPlan(
-  memberId: UUID,
-  institutionPlanId: UUID | null
-): Promise<any> {
-  return request(`/admin/students/${memberId}/plan`, {
-    method: 'PATCH',
-    body: JSON.stringify({ institution_plan_id: institutionPlanId }),
+export async function updateSubtopic(subtopicId: UUID, data: Partial<Subtopic>): Promise<Subtopic> {
+  return request<Subtopic>(`/subtopics/${subtopicId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
   });
 }
 
+export async function deleteSubtopic(subtopicId: UUID): Promise<void> {
+  return request(`/subtopics/${subtopicId}`, { method: 'DELETE' });
+}
+
+export async function restoreSubtopic(subtopicId: UUID): Promise<Subtopic> {
+  return request<Subtopic>(`/subtopics/${subtopicId}/restore`, { method: 'PUT' });
+}
+
 // ============================================================
-// FLASHCARDS — Professor Management (KV-based on real backend)
+// KEYWORD CONNECTIONS — custom list (array plano)
 // ============================================================
 
-export interface FlashcardCard {
-  id: UUID;
+export async function getKeywordConnections(keywordId: UUID): Promise<KeywordConnection[]> {
+  return request<KeywordConnection[]>(`/keyword-connections?keyword_id=${keywordId}`);
+}
+
+export async function createKeywordConnection(data: {
+  keyword_a_id: UUID;
+  keyword_b_id: UUID;
+  relationship?: string;
+}): Promise<KeywordConnection> {
+  return request<KeywordConnection>('/keyword-connections', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteKeywordConnection(connectionId: UUID): Promise<void> {
+  return request(`/keyword-connections/${connectionId}`, { method: 'DELETE' });
+}
+
+// ============================================================
+// PROFESSOR NOTES ON KEYWORDS — custom list, upsert
+// ============================================================
+
+export async function getKwProfNotes(keywordId: UUID): Promise<KwProfNote[]> {
+  return request<KwProfNote[]>(`/kw-prof-notes?keyword_id=${keywordId}`);
+}
+
+export async function createKwProfNote(data: { keyword_id: UUID; note: string }): Promise<KwProfNote> {
+  return request<KwProfNote>('/kw-prof-notes', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteKwProfNote(noteId: UUID): Promise<void> {
+  return request(`/kw-prof-notes/${noteId}`, { method: 'DELETE' });
+}
+
+// ============================================================
+// FLASHCARDS — paginated, SACRED soft-delete (requires summary_id)
+// ============================================================
+
+export async function getFlashcards(summaryId: UUID, opts?: { keyword_id?: UUID; limit?: number; offset?: number }): Promise<PaginatedResult<FlashcardCard>> {
+  let qs = `?summary_id=${summaryId}`;
+  if (opts?.keyword_id) qs += `&keyword_id=${opts.keyword_id}`;
+  qs += paginationQs(opts);
+  return request<PaginatedResult<FlashcardCard>>(`/flashcards${qs}`);
+}
+
+export async function createFlashcard(data: {
   summary_id: UUID;
   keyword_id: UUID;
-  subtopic_id?: UUID;
-  institution_id?: UUID;
   front: string;
   back: string;
-  image_url?: string | null;
-  status: 'draft' | 'published' | 'active' | 'suspended' | 'deleted';
-  source: 'ai' | 'manual' | 'imported' | 'professor';
-  created_by?: string;
-  created_at: ISODate;
-}
-
-export async function getFlashcardsBySummary(summaryId: UUID): Promise<FlashcardCard[]> {
-  return request<FlashcardCard[]>(`/summaries/${summaryId}/flashcards`);
-}
-
-export async function getFlashcardsByKeyword(keywordId: UUID): Promise<FlashcardCard[]> {
-  return request<FlashcardCard[]>(`/keywords/${keywordId}/flashcards`);
-}
-
-export async function getFlashcard(cardId: UUID): Promise<FlashcardCard> {
-  return request<FlashcardCard>(`/flashcards/${cardId}`);
-}
-
-export async function createFlashcard(data: Partial<FlashcardCard>): Promise<FlashcardCard> {
+  source?: string;
+}): Promise<FlashcardCard> {
   return request<FlashcardCard>('/flashcards', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -680,54 +489,218 @@ export async function deleteFlashcard(cardId: UUID): Promise<void> {
   return request(`/flashcards/${cardId}`, { method: 'DELETE' });
 }
 
+export async function restoreFlashcard(cardId: UUID): Promise<FlashcardCard> {
+  return request<FlashcardCard>(`/flashcards/${cardId}/restore`, { method: 'PUT' });
+}
+
 // ============================================================
-// REVIEWS & SPACED REPETITION (KV-based on real backend)
+// QUIZ QUESTIONS — paginated, SACRED soft-delete
 // ============================================================
 
-export interface ReviewRequest {
-  session_id: UUID;
-  item_id: UUID;
-  instrument_type: 'flashcard' | 'quiz';
-  subtopic_id: UUID;
+export async function getQuizQuestions(summaryId: UUID, opts?: {
+  keyword_id?: UUID;
+  question_type?: string;
+  difficulty?: string;
+  limit?: number;
+  offset?: number;
+}): Promise<PaginatedResult<QuizQuestion>> {
+  let qs = `?summary_id=${summaryId}`;
+  if (opts?.keyword_id) qs += `&keyword_id=${opts.keyword_id}`;
+  if (opts?.question_type) qs += `&question_type=${opts.question_type}`;
+  if (opts?.difficulty) qs += `&difficulty=${opts.difficulty}`;
+  qs += paginationQs(opts);
+  return request<PaginatedResult<QuizQuestion>>(`/quiz-questions${qs}`);
+}
+
+export async function createQuizQuestion(data: {
+  summary_id: UUID;
   keyword_id: UUID;
-  grade: 1 | 2 | 3 | 4;
-  response_time_ms?: number;
-}
-
-export interface ReviewResponse {
-  review_log: any;
-  updated_bkt: any;
-  updated_card_fsrs: any | null;
-  feedback: {
-    delta_before: number;
-    delta_after: number;
-    color_before: string;
-    color_after: string;
-    mastery: number;
-    stability: number | null;
-    next_due: string | null;
-  };
-}
-
-export async function submitReview(data: ReviewRequest): Promise<ReviewResponse> {
-  return request<ReviewResponse>('/reviews', {
+  question_type: string;
+  question: string;
+  correct_answer: string;
+  options?: any;
+  explanation?: string;
+  difficulty?: string;
+  source?: string;
+}): Promise<QuizQuestion> {
+  return request<QuizQuestion>('/quiz-questions', {
     method: 'POST',
     body: JSON.stringify(data),
   });
 }
 
-export async function getBktStates(options?: {
-  subtopic_id?: UUID;
-  keyword_id?: UUID;
-}): Promise<any> {
-  const params = new URLSearchParams();
-  if (options?.subtopic_id) params.set('subtopic_id', options.subtopic_id);
-  if (options?.keyword_id) params.set('keyword_id', options.keyword_id);
-  const qs = params.toString() ? `?${params}` : '';
-  return request(`/bkt${qs}`);
+export async function updateQuizQuestion(questionId: UUID, data: Partial<QuizQuestion>): Promise<QuizQuestion> {
+  return request<QuizQuestion>(`/quiz-questions/${questionId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
 }
 
-export async function getFsrsStates(cardId?: UUID): Promise<any> {
-  const qs = cardId ? `?card_id=${cardId}` : '';
-  return request(`/fsrs${qs}`);
+export async function deleteQuizQuestion(questionId: UUID): Promise<void> {
+  return request(`/quiz-questions/${questionId}`, { method: 'DELETE' });
+}
+
+export async function restoreQuizQuestion(questionId: UUID): Promise<QuizQuestion> {
+  return request<QuizQuestion>(`/quiz-questions/${questionId}/restore`, { method: 'PUT' });
+}
+
+// ============================================================
+// VIDEOS — paginated, SACRED soft-delete (requires summary_id)
+// ============================================================
+
+export async function getVideos(summaryId: UUID, opts?: { limit?: number; offset?: number }): Promise<PaginatedResult<Video>> {
+  return request<PaginatedResult<Video>>(`/videos?summary_id=${summaryId}${paginationQs(opts)}`);
+}
+
+export async function createVideo(data: {
+  summary_id: UUID;
+  title: string;
+  url: string;
+  platform?: string;
+  duration_seconds?: number;
+  order_index?: number;
+}): Promise<Video> {
+  return request<Video>('/videos', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateVideo(videoId: UUID, data: Partial<Video>): Promise<Video> {
+  return request<Video>(`/videos/${videoId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteVideo(videoId: UUID): Promise<void> {
+  return request(`/videos/${videoId}`, { method: 'DELETE' });
+}
+
+export async function restoreVideo(videoId: UUID): Promise<Video> {
+  return request<Video>(`/videos/${videoId}/restore`, { method: 'PUT' });
+}
+
+// ============================================================
+// STUDENT NOTES ON KEYWORDS — paginated, scopeToUser
+// ============================================================
+
+export async function getKwStudentNotes(keywordId: UUID): Promise<PaginatedResult<KwStudentNote>> {
+  return request<PaginatedResult<KwStudentNote>>(`/kw-student-notes?keyword_id=${keywordId}`);
+}
+
+export async function createKwStudentNote(data: { keyword_id: UUID; note: string }): Promise<KwStudentNote> {
+  return request<KwStudentNote>('/kw-student-notes', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateKwStudentNote(noteId: UUID, data: { note?: string }): Promise<KwStudentNote> {
+  return request<KwStudentNote>(`/kw-student-notes/${noteId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteKwStudentNote(noteId: UUID): Promise<void> {
+  return request(`/kw-student-notes/${noteId}`, { method: 'DELETE' });
+}
+
+export async function restoreKwStudentNote(noteId: UUID): Promise<KwStudentNote> {
+  return request<KwStudentNote>(`/kw-student-notes/${noteId}/restore`, { method: 'PUT' });
+}
+
+// ============================================================
+// TEXT ANNOTATIONS — paginated, scopeToUser
+// ============================================================
+
+export async function getTextAnnotations(summaryId: UUID): Promise<PaginatedResult<PlatformTextAnnotation>> {
+  return request<PaginatedResult<PlatformTextAnnotation>>(`/text-annotations?summary_id=${summaryId}`);
+}
+
+export async function createTextAnnotation(data: {
+  summary_id: UUID;
+  start_offset: number;
+  end_offset: number;
+  color?: string;
+  note?: string;
+}): Promise<PlatformTextAnnotation> {
+  return request<PlatformTextAnnotation>('/text-annotations', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateTextAnnotation(annotationId: UUID, data: { color?: string; note?: string }): Promise<PlatformTextAnnotation> {
+  return request<PlatformTextAnnotation>(`/text-annotations/${annotationId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteTextAnnotation(annotationId: UUID): Promise<void> {
+  return request(`/text-annotations/${annotationId}`, { method: 'DELETE' });
+}
+
+// ============================================================
+// VIDEO NOTES — paginated, scopeToUser
+// ============================================================
+
+export async function getVideoNotes(videoId: UUID): Promise<PaginatedResult<VideoNote>> {
+  return request<PaginatedResult<VideoNote>>(`/video-notes?video_id=${videoId}`);
+}
+
+export async function createVideoNote(data: {
+  video_id: UUID;
+  timestamp_seconds?: number;
+  note: string;
+}): Promise<VideoNote> {
+  return request<VideoNote>('/video-notes', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateVideoNote(noteId: UUID, data: { timestamp_seconds?: number; note?: string }): Promise<VideoNote> {
+  return request<VideoNote>(`/video-notes/${noteId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteVideoNote(noteId: UUID): Promise<void> {
+  return request(`/video-notes/${noteId}`, { method: 'DELETE' });
+}
+
+// ============================================================
+// READING STATE — upsert (one per student+summary)
+// ============================================================
+
+export async function getReadingState(summaryId: UUID): Promise<ReadingState | null> {
+  return request<ReadingState | null>(`/reading-states?summary_id=${summaryId}`);
+}
+
+export async function upsertReadingState(data: {
+  summary_id: UUID;
+  scroll_position?: number;
+  time_spent_seconds?: number;
+  completed?: boolean;
+  last_read_at?: string;
+}): Promise<ReadingState> {
+  return request<ReadingState>('/reading-states', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+// ============================================================
+// REORDER — bulk reorder any orderable table
+// ============================================================
+
+export async function reorder(table: string, items: Array<{ id: UUID; order_index: number }>): Promise<void> {
+  return request('/reorder', {
+    method: 'PUT',
+    body: JSON.stringify({ table, items }),
+  });
 }

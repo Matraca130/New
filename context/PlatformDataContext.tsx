@@ -17,7 +17,7 @@ import type {
   Course,
 } from '@/types/platform';
 
-// ── State shape ───────────────────────────────────────────
+// ── State shape ────────────────────────────────────────
 
 interface PlatformDataState {
   institution: Institution | null;
@@ -45,7 +45,7 @@ const PlatformDataContext = createContext<PlatformDataContextType>({
   refreshCourses: async () => {},
 });
 
-// ── Provider ──────────────────────────────────────────────
+// ── Provider ──────────────────────────────────────────
 
 export function PlatformDataProvider({ children }: { children: ReactNode }) {
   const { activeMembership, status } = useAuth();
@@ -59,7 +59,7 @@ export function PlatformDataProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // ── Fetch all platform data ───────────────────────────────
+  // ── Fetch all platform data ────────────────────────────
   const fetchAll = useCallback(async (instId: string) => {
     setLoading(true);
     setError(null);
@@ -82,7 +82,7 @@ export function PlatformDataProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // ── Individual refresh functions ──────────────────────────
+  // ── Individual refresh functions ───────────────────────
   const refreshInstitution = useCallback(async () => {
     if (!institutionId) return;
     try {
@@ -104,7 +104,7 @@ export function PlatformDataProvider({ children }: { children: ReactNode }) {
     }
   }, [institutionId]);
 
-  // ── Auto-load when institution changes ──────────────────────
+  // ── Auto-load when institution changes ──────────────────
   useEffect(() => {
     if (status === 'loading') return;
     if (!institutionId) {
@@ -141,7 +141,7 @@ export function PlatformDataProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// ── Hook ──────────────────────────────────────────────────
+// ── Hook ──────────────────────────────────────────────
 
 export function usePlatformData() {
   return useContext(PlatformDataContext);
