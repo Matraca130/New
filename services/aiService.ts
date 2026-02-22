@@ -2,14 +2,14 @@
 // Axon — AI Service (Frontend → Backend → Gemini)
 // ============================================================
 
-import { FIGMA_BACKEND_URL, getAnonKey } from '@/services/apiConfig';
+import { FIGMA_BACKEND_URL, publicAnonKey } from '@/services/apiConfig';
 
 async function post<T>(path: string, body: any): Promise<T> {
   const res = await fetch(`${FIGMA_BACKEND_URL}${path}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getAnonKey()}`,
+      Authorization: `Bearer ${publicAnonKey}`,
     },
     body: JSON.stringify(body),
   });
