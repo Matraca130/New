@@ -15,7 +15,7 @@ export interface Flashcard {
   back: string;
   source: string | null;
   is_active: boolean;
-  order_index: number;
+  order_index?: number; // optional: not all backends return this field
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
